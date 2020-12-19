@@ -1,0 +1,22 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<svg viewBox="0 -2 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(0, 0)">
+    <g transform="matrix(1.14285719394684, 0, 0, 1.14285719394684, 0, 0)">
+      <g transform="translate(0, 0)">
+        <g transform="matrix(0.875000715255737, 0, 0, 0.875000715255737, 0, 0)">
+          <g transform="translate(0, 0)">
+            <g transform="matrix(1.14285719394684, 0, 0, 1.14285719394684, 0, 0)">
+              <g id="Layer_1" transform="translate(0, -1.75)" style="enable-background:new 0 0 32 32">
+                <g transform="matrix(0.875000715255737, 0, 0, 0.875000715255737, 0, 0)">
+                  <g id="Medium">
+                    <path d="M31, 2L1, 2C0.5, 2 0, 2.5 0, 3L0, 29C0, 29.5 0.5, 30 1, 30L31, 30C31.5, 30 32, 29.5 32, 29L32, 3C32, 2.5 31.5, 2 31, 2zM26, 20L22, 16L16, 22L12, 18L6, 24L4, 22L12, 14L16, 18L20, 14L16, 10L26, 10L26, 20z" fill="#1177D7" class="Blue" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

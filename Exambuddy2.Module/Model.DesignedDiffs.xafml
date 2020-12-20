@@ -4,7 +4,10 @@
     <Items>
       <Item Id="Main">
         <Items>
-          <Item Id="Question_ListView" Index="0" />
+          <Item Id="CourseUnit_ListView" Index="0" />
+          <Item Id="Topic_ListView" Index="1" />
+          <Item Id="Question_ListView" Index="2" />
+          <Item Id="Answer_ListView" Index="3" />
         </Items>
       </Item>
     </Items>

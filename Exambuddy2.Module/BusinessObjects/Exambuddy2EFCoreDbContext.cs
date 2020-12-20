@@ -16,7 +16,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public DbSet<PermissionPolicyUser> Users { get; set; }
         public DbSet<FileData> FileData { get; set; }
         public DbSet<ReportDataV2> ReportDataV2 { get; set; }
-       
+        public DbSet<Source> Sources { get; set; }
         public DbSet<CourseUnit> CourseUnits { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Question> Questions { get; set; }
@@ -29,8 +29,8 @@ namespace Exambuddy2.Module.BusinessObjects
 
             mb.Entity<Topic>().HasOne(b => b.CourseUnit).WithMany(i => i.Topics);
             mb.Entity<Question>().HasOne(b => b.Topic).WithMany(i => i.Questions);
-          
 
+           // mb.Entity<Question>().HasOne(x => x.Source);
             mb.Entity<Question>().HasMany(b=>b.Answers).WithOne(x=>x.Question).OnDelete(DeleteBehavior.NoAction);
             //mb.Entity<Question>().HasMany<TagLink>().WithOne(x=>x.Question).OnDelete(DeleteBehavior.Cascade);
             mb.Entity<Tag>().HasMany<TagLink>().WithOne(x=>x.Tag).OnDelete(DeleteBehavior.NoAction);

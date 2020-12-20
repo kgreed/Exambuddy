@@ -18,8 +18,13 @@ namespace Exambuddy2.Module.BusinessObjects
             TagLinks = new List<TagLink>();
             // DataFile = new QuestionFileData();
         }
+        public int QuestionNo { get; set; }
 
-        public string Name { get; set; }
+        [Browsable(false)]
+        public int SourceId { get; set; }
+        [ForeignKey("SourceId")]
+        public virtual Source Source { get; set; }
+
         [Browsable(false)] public int TopicId { get; set; }
         [ForeignKey("TopicId")] public virtual Topic Topic { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
@@ -32,11 +37,13 @@ namespace Exambuddy2.Module.BusinessObjects
         [Required]
         [Aggregated]
         [ExpandObjectMembers(ExpandObjectMembers.Never)]
+        [VisibleInListView(false)]
         public virtual QuestionFileData DataFile { get; set; }
         [Size(-1)]
         [Delayed(true)]
         [NotMapped]
         [ImageEditor]
+        [VisibleInListView(false)]
         public byte[] Photo
         {
             get => DataFile?.Content;

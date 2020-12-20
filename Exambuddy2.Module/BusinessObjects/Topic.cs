@@ -25,7 +25,9 @@ namespace Exambuddy2.Module.BusinessObjects
                 CourseUnit = attachedBo;
             }
         }
+     
         public string Name { get; set; }
+        public int Week { get; set; }
         [Browsable(false)] public int CourseUnitId { get; set; }
         [ForeignKey("CourseUnitId")] public virtual CourseUnit CourseUnit { get; set; }
         [Aggregated] public virtual IList<Question> Questions { get; set; }

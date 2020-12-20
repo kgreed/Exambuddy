@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
@@ -16,8 +17,8 @@ namespace Exambuddy2.Module.BusinessObjects
         public override void AddChild(BasicBo child)
         {
             base.AddChild(child);
-            var childBo =  ObjectSpace.FindObject<Topic>(child.Id);
-            Topics.Add(childBo );
+           // var childBo =  ObjectSpace.FindObject<Topic>(CriteriaOperator.Parse("[Id]=? ", child.Id) );
+            Topics.Add(child as Topic );
         }
 
        

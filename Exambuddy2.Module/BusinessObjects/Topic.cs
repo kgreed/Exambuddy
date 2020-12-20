@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
@@ -21,7 +22,7 @@ namespace Exambuddy2.Module.BusinessObjects
             set
             {
                 var bo = value;
-                var attachedBo =bo.ObjectSpace.FindObject<CourseUnit>(bo.Id);
+                var attachedBo =bo.ObjectSpace.FindObject<CourseUnit>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
                 CourseUnit =attachedBo;
             }
         }

@@ -4,51 +4,43 @@ using System.ComponentModel.DataAnnotations.Schema;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
-using DevExpress.XtraRichEdit;
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]
-     
     [FileAttachment(nameof(DataFile))]
-    [DefaultClassOptions, ImageName("BO_Resume")]
-    public class Question : BasicBo 
+    [DefaultClassOptions]
+    [ImageName("BO_Resume")]
+    public class Question : BasicBo
     {
-        public Question() {
-            Answers = new HashSet<Answer>();
-            TagLinks = new HashSet<TagLink>();
-           // DataFile = new QuestionFileData();
+        public Question()
+        {
+            Answers = new List<Answer>();
+            TagLinks = new List<TagLink>();
+            // DataFile = new QuestionFileData();
         }
-        
-       
-       
+
         public string Name { get; set; }
-
-        [Browsable(false)]
-        public int TopicId { get; set; }
-        [ForeignKey("TopicId")]
-        public virtual Topic Topic { get; set; }
-        
-        [EditorAlias("MyHtmlPropertyEditor"), ModelDefault("RowCount", "4")]
+        [Browsable(false)] public int TopicId { get; set; }
+        [ForeignKey("TopicId")] public virtual Topic Topic { get; set; }
+        [EditorAlias("MyHtmlPropertyEditor")]
+        [ModelDefault("RowCount", "4")]
         public string QuestionText { get; set; }
-
-       
-        [Aggregated]
-        public virtual ICollection<Answer> Answers { get; set; }
-
-        [Aggregated]
-        public virtual ICollection<TagLink> TagLinks { get; set; }
-        [Browsable(false)]
-        public int FileId { get; set; }
+        [Aggregated] public virtual IList<Answer> Answers { get; set; }
+        [Aggregated] public virtual IList<TagLink> TagLinks { get; set; }
+        [Browsable(false)] public int FileId { get; set; }
         [ForeignKey("FileId")]
         [Required]
-        [Aggregated, ExpandObjectMembers(ExpandObjectMembers.Never)]
+        [Aggregated]
+        [ExpandObjectMembers(ExpandObjectMembers.Never)]
         public virtual QuestionFileData DataFile { get; set; }
-
-
         [Size(-1)]
         [Delayed(true)]
         [NotMapped]
         [ImageEditor]
-        public byte[] Photo { get => DataFile?.Content; set => DataFile.Content = value; }
+        public byte[] Photo
+        {
+            get => DataFile?.Content;
+            set => DataFile.Content = value;
+        }
     }
 }

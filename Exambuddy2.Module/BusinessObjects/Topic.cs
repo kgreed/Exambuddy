@@ -12,7 +12,7 @@ namespace Exambuddy2.Module.BusinessObjects
     {
         public Topic()
         {
-            Questions = new HashSet<Question>();
+            Questions = new List<Question>();
         }
 
         public override BasicBo Parent
@@ -28,7 +28,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public string Name { get; set; }
         [Browsable(false)] public int CourseUnitId { get; set; }
         [ForeignKey("CourseUnitId")] public virtual CourseUnit CourseUnit { get; set; }
-        [Aggregated] public virtual ICollection<Question> Questions { get; set; }
+        [Aggregated] public virtual IList<Question> Questions { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         public string TopicNotes { get; set; }

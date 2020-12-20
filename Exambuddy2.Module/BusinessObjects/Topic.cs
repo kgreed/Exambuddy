@@ -2,14 +2,13 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using DevExpress.Data.Filtering;
-using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]
-    public class Topic :BasicBo 
+    public class Topic : BasicBo
     {
         public Topic()
         {
@@ -18,27 +17,20 @@ namespace Exambuddy2.Module.BusinessObjects
 
         public override BasicBo Parent
         {
-            get => CourseUnit as BasicBo;
+            get => CourseUnit;
             set
             {
                 var bo = value;
-                var attachedBo =bo.ObjectSpace.FindObject<CourseUnit>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
-                CourseUnit =attachedBo;
+                var attachedBo = bo.ObjectSpace.FindObject<CourseUnit>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
+                CourseUnit = attachedBo;
             }
         }
-        
         public string Name { get; set; }
-        [Browsable(false)]
-        public  int CourseUnitId { get; set; }
-        [ForeignKey("CourseUnitId")]
-        public virtual CourseUnit CourseUnit { get; set; }
-
-        [Aggregated]
-        public virtual ICollection<Question> Questions { get; set; }
-
-         
-        [EditorAlias("MyHtmlPropertyEditor"), ModelDefault("RowCount", "4")]
+        [Browsable(false)] public int CourseUnitId { get; set; }
+        [ForeignKey("CourseUnitId")] public virtual CourseUnit CourseUnit { get; set; }
+        [Aggregated] public virtual ICollection<Question> Questions { get; set; }
+        [EditorAlias("MyHtmlPropertyEditor")]
+        [ModelDefault("RowCount", "4")]
         public string TopicNotes { get; set; }
-         
     }
 }

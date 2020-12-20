@@ -52,7 +52,7 @@
             // 
             // Exambuddy2BlazorApplication
             // 
-            this.ApplicationName = "Exambuddy2";
+            this.ApplicationName = "Exambuddy";
             this.CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema;
             this.Modules.Add(this.module1);
             this.Modules.Add(this.module2);

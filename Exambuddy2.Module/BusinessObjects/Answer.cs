@@ -32,7 +32,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public string AnswerText { get; set; }
 
         [Browsable(false)]
-        public int FileId { get; set; }
+        public int? FileId { get; set; }
         [ForeignKey("FileId")]
         [Required]
         [Aggregated, ExpandObjectMembers(ExpandObjectMembers.Never)]

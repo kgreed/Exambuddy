@@ -16,7 +16,7 @@ namespace Exambuddy2.Module.BusinessObjects
         {
             Answers = new List<Answer>();
             TagLinks = new List<TagLink>();
-            // DataFile = new QuestionFileData();
+           
         }
         public int QuestionNo { get; set; }
 
@@ -32,7 +32,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public string QuestionText { get; set; }
         [Aggregated] public virtual IList<Answer> Answers { get; set; }
         [Aggregated] public virtual IList<TagLink> TagLinks { get; set; }
-        [Browsable(false)] public int FileId { get; set; }
+        [Browsable(false)] public int? FileId { get; set; }
         [ForeignKey("FileId")]
         [Required]
         [Aggregated]

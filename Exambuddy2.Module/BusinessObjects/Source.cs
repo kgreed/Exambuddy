@@ -11,14 +11,14 @@ namespace Exambuddy2.Module.BusinessObjects
     public class Source : BasicBo
     {
         [MaxLength(255)]
-        public string Description { get; set; }
+        public string Name { get; set; }
        
         public SourceType Type { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         public string Information { get; set; }
 
-        [Browsable(false)] public int FileId { get; set; }
+        [Browsable(false)] public int? FileId { get; set; }
         [ForeignKey("FileId")]
        
         [Aggregated]

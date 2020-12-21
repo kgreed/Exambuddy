@@ -18,6 +18,7 @@ namespace Exambuddy2.Module.BusinessObjects
             TagLinks = new List<TagLink>();
            
         }
+        [ImmediatePostData]
         public int QuestionNo { get; set; }
 
         [Browsable(false)]
@@ -29,6 +30,7 @@ namespace Exambuddy2.Module.BusinessObjects
         [ForeignKey("TopicId")] public virtual Topic Topic { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
+        [ImmediatePostData]
         public string QuestionText { get; set; }
         [Aggregated] public virtual IList<Answer> Answers { get; set; }
         [Aggregated] public virtual IList<TagLink> TagLinks { get; set; }

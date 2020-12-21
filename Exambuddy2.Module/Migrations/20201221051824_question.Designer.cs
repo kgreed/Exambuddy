@@ -4,14 +4,16 @@ using Exambuddy2.Module.BusinessObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Exambuddy2.Module.Migrations
 {
     [DbContext(typeof(Exambuddy2EFCoreDbContext))]
-    partial class Exambuddy2EFCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201221051824_question")]
+    partial class question
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -399,8 +401,8 @@ namespace Exambuddy2.Module.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("QuestionNo")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("QuestionNo")
+                        .HasColumnType("int");
 
                     b.Property<string>("QuestionText")
                         .HasColumnType("nvarchar(max)");

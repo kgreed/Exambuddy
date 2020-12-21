@@ -25,12 +25,20 @@
           <LayoutGroup Id="SimpleEditors">
             <LayoutGroup Id="Question">
               <LayoutGroup Id="Question_col1">
-                <LayoutItem Id="Topic" Removed="True" />
+                <LayoutItem Id="Topic" ViewItem="Topic" ShowCaption="" Index="0" IsNewNode="True" Removed="True" />
+                <LayoutItem Id="QuestionNo" Index="1" Removed="True" />
+                <LayoutItem Id="Source" Index="2" />
+              </LayoutGroup>
+              <LayoutGroup Id="Question_col2">
+                <LayoutItem Id="QuestionNo" Index="0" ViewItem="QuestionNo" ShowCaption="" IsNewNode="True" />
+                <LayoutItem Id="DataFile" Index="1" />
+                <LayoutItem Id="Photo" Removed="True" />
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>
           <LayoutGroup Id="SizeableEditors">
-            <LayoutItem Id="Topic" ViewItem="Topic" ShowCaption="" Index="2" IsNewNode="True" />
+            <LayoutItem Id="Photo" ViewItem="Photo" ShowCaption="" Index="0" IsNewNode="True" />
+            <LayoutItem Id="QuestionText" Index="1" />
           </LayoutGroup>
         </LayoutGroup>
       </Layout>

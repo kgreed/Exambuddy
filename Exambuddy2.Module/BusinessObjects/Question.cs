@@ -10,6 +10,7 @@ namespace Exambuddy2.Module.BusinessObjects
     [FileAttachment(nameof(DataFile))]
     [DefaultClassOptions]
     [ImageName("BO_Resume")]
+
     public class Question : BasicBo
     {
         public Question()
@@ -19,7 +20,11 @@ namespace Exambuddy2.Module.BusinessObjects
            
         }
         [ImmediatePostData]
-        public int QuestionNo { get; set; }
+        public string Name { get; set; }
+        [ImmediatePostData]
+        public string QuestionNo { get; set; }
+
+
 
         [Browsable(false)]
         public int SourceId { get; set; }

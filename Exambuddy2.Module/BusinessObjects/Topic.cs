@@ -2,9 +2,10 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
-using DevExpress.Xpo;
+//using DevExpress.Xpo;
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]

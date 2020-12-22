@@ -20,7 +20,7 @@ namespace Exambuddy2.Module.Controllers
             if (nestedFrame == null) return;
             var createdItem = e.CreatedObject; // as Item;
             if (createdItem == null) return;
-            var parent = ((NestedFrame) Frame).ViewItem.CurrentObject; //as Parent;
+            var parent = e.ObjectSpace.GetObject(((NestedFrame) Frame).ViewItem.CurrentObject); //as Parent;
             if (parent == null) return;
             ((BasicBo) parent).AddChild(createdItem as BasicBo);
             ((BasicBo) createdItem).Parent = parent as BasicBo;

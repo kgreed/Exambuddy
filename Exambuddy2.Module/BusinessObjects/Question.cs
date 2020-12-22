@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
-using DevExpress.Xpo;
+using DevExpress.Text.Interop;
+
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]
@@ -11,7 +13,7 @@ namespace Exambuddy2.Module.BusinessObjects
     [DefaultClassOptions]
     [ImageName("BO_Resume")]
 
-    public class Question : BasicBo
+    public class Question : BasicBo // contains IObjectSpaceLink
     {
         public Question()
         {
@@ -19,8 +21,13 @@ namespace Exambuddy2.Module.BusinessObjects
             TagLinks = new List<TagLink>();
            
         }
+        private string _name { get; set; }
         [ImmediatePostData]
-        public string Name { get; set; }
+        public string Name
+        {
+            get => _name;
+            set { _name = value;  }
+        }
         [ImmediatePostData]
         public string QuestionNo { get; set; }
 
@@ -37,17 +44,17 @@ namespace Exambuddy2.Module.BusinessObjects
         [ModelDefault("RowCount", "4")]
         [ImmediatePostData]
         public string QuestionText { get; set; }
-        [Aggregated] public virtual IList<Answer> Answers { get; set; }
-        [Aggregated] public virtual IList<TagLink> TagLinks { get; set; }
+        [DevExpress.ExpressApp.DC.Aggregated] public virtual IList<Answer> Answers { get; set; }
+        [DevExpress.ExpressApp.DC.Aggregated] public virtual IList<TagLink> TagLinks { get; set; }
         [Browsable(false)] public int? FileId { get; set; }
         [ForeignKey("FileId")]
         [Required]
-        [Aggregated]
+        [DevExpress.ExpressApp.DC.Aggregated]
         [ExpandObjectMembers(ExpandObjectMembers.Never)]
         [VisibleInListView(false)]
         public virtual QuestionFileData DataFile { get; set; }
-        [Size(-1)]
-        [Delayed(true)]
+        //[Size(-1)]
+        //[Delayed(true)]
         [NotMapped]
         [ImageEditor]
         [VisibleInListView(false)]

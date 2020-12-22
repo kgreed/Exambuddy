@@ -26,25 +26,23 @@ namespace Exambuddy2.Module.Blazor.Controllers
         {
             InitializeComponent();
             TargetObjectType = typeof(Answer);
-            //var markStart = new SimpleAction(this, "MarkStart", recordStart);
             var markStartAction = new SimpleAction(
                 this, "MarkStart",
                PredefinedCategory.RecordEdit)
             {
              
-            //    //SelectionDependencyType = SelectionDependencyType.RequireMultipleObjects
+             SelectionDependencyType = SelectionDependencyType.RequireSingleObject
             };
             markStartAction.Execute += (s, e) => {
                 foreach (Answer ans in e.SelectedObjects)
                 {
                     ans.uncStartTime = DateTime.Now.ToUniversalTime();
-                     
                     View.ObjectSpace.SetModified(ans);
                 }
                 View.ObjectSpace.CommitChanges();
                 View.ObjectSpace.Refresh();
             };
-            // Target required Views (via the TargetXXX properties) and create their Actions.
+             
         }
         protected override void OnActivated()
         {

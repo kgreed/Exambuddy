@@ -21,7 +21,6 @@ namespace Exambuddy2.Module.BusinessObjects
         public override void AddChild(BasicBo child)
         {
             base.AddChild(child);
-            // var childBo =  ObjectSpace.FindObject<Topic>(CriteriaOperator.Parse("[Id]=? ", child.Id) );
             Topics.Add(child as Topic);
         }
     }

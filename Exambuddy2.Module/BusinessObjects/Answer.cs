@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl.EF;
-using DevExpress.Xpo;
+//using DevExpress.Xpo;
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]
@@ -17,7 +19,15 @@ namespace Exambuddy2.Module.BusinessObjects
         {
             //DataFile = new AnswerFileData();
         }
-
+        public override BasicBo Parent
+        {
+            get => Question;
+            set
+            {
+                var bo = value;
+                Question = bo.ObjectSpace.FindObject<Question>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
+            }
+        }
         public  DateTime uncStartTime { get; set; }
         public DateTime uncEndTime { get; set; }
 
@@ -39,8 +49,8 @@ namespace Exambuddy2.Module.BusinessObjects
         public virtual AnswerFileData DataFile { get; set; }
 
 
-        [Size(-1)]
-        [Delayed(true)]
+        //[Size(-1)]
+        //[Delayed(true)]
         [NotMapped]
         [ImageEditor]
         public byte[] Photo { get => DataFile?.Content; set => DataFile.Content = value; }

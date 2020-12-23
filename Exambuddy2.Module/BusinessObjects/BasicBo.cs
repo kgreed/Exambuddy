@@ -21,6 +21,7 @@ namespace Exambuddy2.Module.BusinessObjects
         {
         }
 
+
         public virtual void AddChild(BasicBo child)
         {
         }

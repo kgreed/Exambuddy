@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
@@ -18,9 +19,19 @@ namespace Exambuddy2.Module.BusinessObjects
         public Question()
         {
             Answers = new List<Answer>();
-            TagLinks = new List<TagLink>();
+           
            
         }
+        public override BasicBo Parent
+        {
+            get => Source;
+            set
+            {
+                var bo = value;
+                Source = bo.ObjectSpace.FindObject<Source>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
+            }
+        }
+
         private string _name { get; set; }
         [ImmediatePostData]
         public string Name
@@ -37,15 +48,14 @@ namespace Exambuddy2.Module.BusinessObjects
         public int SourceId { get; set; }
         [ForeignKey("SourceId")]
         public virtual Source Source { get; set; }
-
-        [Browsable(false)] public int TopicId { get; set; }
-        [ForeignKey("TopicId")] public virtual Topic Topic { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         [ImmediatePostData]
         public string QuestionText { get; set; }
+
+        public string Tags { get; set; }
         [DevExpress.ExpressApp.DC.Aggregated] public virtual IList<Answer> Answers { get; set; }
-        [DevExpress.ExpressApp.DC.Aggregated] public virtual IList<TagLink> TagLinks { get; set; }
+         
         [Browsable(false)] public int? FileId { get; set; }
         [ForeignKey("FileId")]
         [Required]
@@ -62,6 +72,11 @@ namespace Exambuddy2.Module.BusinessObjects
         {
             get => DataFile?.Content;
             set => DataFile.Content = value;
+        }
+        public override void AddChild(BasicBo child)
+        {
+            base.AddChild(child);
+            Answers.Add(child as Answer);
         }
     }
 }

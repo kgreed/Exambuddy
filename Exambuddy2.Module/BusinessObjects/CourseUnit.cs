@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
-using DevExpress.Xpo;
+//using DevExpress.Xpo;
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]

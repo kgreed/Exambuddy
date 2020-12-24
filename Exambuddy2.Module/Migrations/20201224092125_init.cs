@@ -8,36 +8,6 @@ namespace Exambuddy2.Module.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             //migrationBuilder.CreateTable(
-            //    name: "CourseUnits",
-            //    columns: table => new
-            //    {
-            //        Id = table.Column<int>(type: "int", nullable: false)
-            //            .Annotation("SqlServer:Identity", "1, 1"),
-            //        Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-            //        Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_CourseUnits", x => x.Id);
-            //    });
-
-            //migrationBuilder.CreateTable(
-            //    name: "FileData",
-            //    columns: table => new
-            //    {
-            //        ID = table.Column<int>(type: "int", nullable: false)
-            //            .Annotation("SqlServer:Identity", "1, 1"),
-            //        Size = table.Column<int>(type: "int", nullable: false),
-            //        FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-            //        Content = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-            //        Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_FileData", x => x.ID);
-            //    });
-
-            //migrationBuilder.CreateTable(
             //    name: "ModelDifferences",
             //    columns: table => new
             //    {
@@ -105,19 +75,6 @@ namespace Exambuddy2.Module.Migrations
             //    });
 
             //migrationBuilder.CreateTable(
-            //    name: "Tags",
-            //    columns: table => new
-            //    {
-            //        Id = table.Column<int>(type: "int", nullable: false)
-            //            .Annotation("SqlServer:Identity", "1, 1"),
-            //        Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_Tags", x => x.Id);
-            //    });
-
-            //migrationBuilder.CreateTable(
             //    name: "Users",
             //    columns: table => new
             //    {
@@ -131,27 +88,6 @@ namespace Exambuddy2.Module.Migrations
             //    constraints: table =>
             //    {
             //        table.PrimaryKey("PK_Users", x => x.ID);
-            //    });
-
-            //migrationBuilder.CreateTable(
-            //    name: "Topics",
-            //    columns: table => new
-            //    {
-            //        Id = table.Column<int>(type: "int", nullable: false)
-            //            .Annotation("SqlServer:Identity", "1, 1"),
-            //        Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-            //        CourseUnitId = table.Column<int>(type: "int", nullable: false),
-            //        TopicNotes = table.Column<string>(type: "nvarchar(max)", nullable: true)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_Topics", x => x.Id);
-            //        table.ForeignKey(
-            //            name: "FK_Topics_CourseUnits_CourseUnitId",
-            //            column: x => x.CourseUnitId,
-            //            principalTable: "CourseUnits",
-            //            principalColumn: "Id",
-            //            onDelete: ReferentialAction.Cascade);
             //    });
 
             //migrationBuilder.CreateTable(
@@ -267,34 +203,6 @@ namespace Exambuddy2.Module.Migrations
             //    });
 
             //migrationBuilder.CreateTable(
-            //    name: "Questions",
-            //    columns: table => new
-            //    {
-            //        Id = table.Column<int>(type: "int", nullable: false)
-            //            .Annotation("SqlServer:Identity", "1, 1"),
-            //        Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-            //        TopicId = table.Column<int>(type: "int", nullable: false),
-            //        QuestionText = table.Column<string>(type: "nvarchar(max)", nullable: true),
-            //        FileId = table.Column<int>(type: "int", nullable: false)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_Questions", x => x.Id);
-            //        table.ForeignKey(
-            //            name: "FK_Questions_FileData_FileId",
-            //            column: x => x.FileId,
-            //            principalTable: "FileData",
-            //            principalColumn: "ID",
-            //            onDelete: ReferentialAction.Cascade);
-            //        table.ForeignKey(
-            //            name: "FK_Questions_Topics_TopicId",
-            //            column: x => x.TopicId,
-            //            principalTable: "Topics",
-            //            principalColumn: "Id",
-            //            onDelete: ReferentialAction.Cascade);
-            //    });
-
-            //migrationBuilder.CreateTable(
             //    name: "PermissionPolicyMemberPermissionsObject",
             //    columns: table => new
             //    {
@@ -341,76 +249,6 @@ namespace Exambuddy2.Module.Migrations
             //            onDelete: ReferentialAction.Restrict);
             //    });
 
-            //migrationBuilder.CreateTable(
-            //    name: "Answers",
-            //    columns: table => new
-            //    {
-            //        Id = table.Column<int>(type: "int", nullable: false)
-            //            .Annotation("SqlServer:Identity", "1, 1"),
-            //        uncStartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-            //        uncEndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-            //        QuestionId = table.Column<int>(type: "int", nullable: false),
-            //        AnswerText = table.Column<string>(type: "nvarchar(max)", nullable: true),
-            //        FileId = table.Column<int>(type: "int", nullable: false)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_Answers", x => x.Id);
-            //        table.ForeignKey(
-            //            name: "FK_Answers_FileData_FileId",
-            //            column: x => x.FileId,
-            //            principalTable: "FileData",
-            //            principalColumn: "ID",
-            //            onDelete: ReferentialAction.Cascade);
-            //        table.ForeignKey(
-            //            name: "FK_Answers_Questions_QuestionId",
-            //            column: x => x.QuestionId,
-            //            principalTable: "Questions",
-            //            principalColumn: "Id");
-            //    });
-
-            //migrationBuilder.CreateTable(
-            //    name: "TagLink",
-            //    columns: table => new
-            //    {
-            //        Id = table.Column<int>(type: "int", nullable: false)
-            //            .Annotation("SqlServer:Identity", "1, 1"),
-            //        QuestionId = table.Column<int>(type: "int", nullable: false),
-            //        TagId = table.Column<int>(type: "int", nullable: false),
-            //        TagId1 = table.Column<int>(type: "int", nullable: true)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_TagLink", x => x.Id);
-            //        table.ForeignKey(
-            //            name: "FK_TagLink_Questions_QuestionId",
-            //            column: x => x.QuestionId,
-            //            principalTable: "Questions",
-            //            principalColumn: "Id",
-            //            onDelete: ReferentialAction.Cascade);
-            //        table.ForeignKey(
-            //            name: "FK_TagLink_Tags_TagId",
-            //            column: x => x.TagId,
-            //            principalTable: "Tags",
-            //            principalColumn: "Id");
-            //        table.ForeignKey(
-            //            name: "FK_TagLink_Tags_TagId1",
-            //            column: x => x.TagId1,
-            //            principalTable: "Tags",
-            //            principalColumn: "Id",
-            //            onDelete: ReferentialAction.Restrict);
-            //    });
-
-            //migrationBuilder.CreateIndex(
-            //    name: "IX_Answers_FileId",
-            //    table: "Answers",
-            //    column: "FileId");
-
-            //migrationBuilder.CreateIndex(
-            //    name: "IX_Answers_QuestionId",
-            //    table: "Answers",
-            //    column: "QuestionId");
-
             //migrationBuilder.CreateIndex(
             //    name: "IX_ModelDifferenceAspects_OwnerID",
             //    table: "ModelDifferenceAspects",
@@ -445,43 +283,10 @@ namespace Exambuddy2.Module.Migrations
             //    name: "IX_PermissionPolicyTypePermissionObject_RoleID",
             //    table: "PermissionPolicyTypePermissionObject",
             //    column: "RoleID");
-
-            //migrationBuilder.CreateIndex(
-            //    name: "IX_Questions_FileId",
-            //    table: "Questions",
-            //    column: "FileId");
-
-            //migrationBuilder.CreateIndex(
-            //    name: "IX_Questions_TopicId",
-            //    table: "Questions",
-            //    column: "TopicId");
-
-            //migrationBuilder.CreateIndex(
-            //    name: "IX_TagLink_QuestionId",
-            //    table: "TagLink",
-            //    column: "QuestionId");
-
-            //migrationBuilder.CreateIndex(
-            //    name: "IX_TagLink_TagId",
-            //    table: "TagLink",
-            //    column: "TagId");
-
-            //migrationBuilder.CreateIndex(
-            //    name: "IX_TagLink_TagId1",
-            //    table: "TagLink",
-            //    column: "TagId1");
-
-            //migrationBuilder.CreateIndex(
-            //    name: "IX_Topics_CourseUnitId",
-            //    table: "Topics",
-            //    column: "CourseUnitId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Answers");
-
             migrationBuilder.DropTable(
                 name: "ModelDifferenceAspects");
 
@@ -507,9 +312,6 @@ namespace Exambuddy2.Module.Migrations
                 name: "ReportDataV2");
 
             migrationBuilder.DropTable(
-                name: "TagLink");
-
-            migrationBuilder.DropTable(
                 name: "ModelDifferences");
 
             migrationBuilder.DropTable(
@@ -519,22 +321,7 @@ namespace Exambuddy2.Module.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Questions");
-
-            migrationBuilder.DropTable(
-                name: "Tags");
-
-            migrationBuilder.DropTable(
                 name: "PermissionPolicyRoleBase");
-
-            migrationBuilder.DropTable(
-                name: "FileData");
-
-            migrationBuilder.DropTable(
-                name: "Topics");
-
-            migrationBuilder.DropTable(
-                name: "CourseUnits");
         }
     }
 }

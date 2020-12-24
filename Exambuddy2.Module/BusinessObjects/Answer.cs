@@ -6,6 +6,7 @@ using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl.EF;
+using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 //using DevExpress.Xpo;
 namespace Exambuddy2.Module.BusinessObjects
 {
@@ -17,7 +18,7 @@ namespace Exambuddy2.Module.BusinessObjects
     {
         public Answer()
         {
-            //DataFile = new AnswerFileData();
+            DataFile = new AnswerFileData();
         }
         public override BasicBo Parent
         {
@@ -54,6 +55,11 @@ namespace Exambuddy2.Module.BusinessObjects
         [NotMapped]
         [ImageEditor]
         public byte[] Photo { get => DataFile?.Content; set => DataFile.Content = value; }
+
+        [Browsable(false)]
+        public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual PermissionPolicyUser User { get; set; }
 
     }
 }

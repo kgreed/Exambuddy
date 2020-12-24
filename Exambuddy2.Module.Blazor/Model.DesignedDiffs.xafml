@@ -1,21 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application>
+  <NavigationItems>
+    <Items>
+      <Item Id="Main">
+        <Items>
+          <Item Id="Source_ListView" Index="2" />
+          <Item Id="Question_ListView" Index="3" />
+          <Item Id="Answer_ListView" Index="4" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
   <SchemaModules>
     <SchemaModule Name="SystemModule" Version="20.2.4.0" IsNewNode="True" />
   </SchemaModules>
-  <Views>
-    <DetailView Id="Question_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="Question">
-              <LayoutGroup Id="Question_col2">
-                <LayoutItem Id="Topic" Removed="True" />
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-  </Views>
 </Application>

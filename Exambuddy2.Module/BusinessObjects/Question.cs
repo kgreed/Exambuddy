@@ -20,7 +20,7 @@ namespace Exambuddy2.Module.BusinessObjects
         {
             Answers = new List<Answer>();
            
-           
+            DataFile = new QuestionFileData();
         }
         public override BasicBo Parent
         {

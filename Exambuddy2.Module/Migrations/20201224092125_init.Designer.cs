@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exambuddy2.Module.Migrations
 {
     [DbContext(typeof(Exambuddy2EFCoreDbContext))]
-    [Migration("20201220222755_quest2")]
-    partial class quest2
+    [Migration("20201224092125_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,33 +43,6 @@ namespace Exambuddy2.Module.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ModulesInfo");
-                });
-
-            modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.FileData", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<byte[]>("Content")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("FileData");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("FileData");
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.ModelDifference", b =>
@@ -345,174 +318,6 @@ namespace Exambuddy2.Module.Migrations
                     b.ToTable("ReportDataV2");
                 });
 
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Answer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("AnswerText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FileId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("uncEndTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("uncStartTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FileId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.CourseUnit", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CourseUnits");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Question", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("FileId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuestionNo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("QuestionText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TopicId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FileId");
-
-                    b.HasIndex("TopicId");
-
-                    b.ToTable("Questions");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Source", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Information")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sources");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.TagLink", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TagId1")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.HasIndex("TagId");
-
-                    b.HasIndex("TagId1");
-
-                    b.ToTable("TagLink");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Topic", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CourseUnitId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TopicNotes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Week")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseUnitId");
-
-                    b.ToTable("Topics");
-                });
-
             modelBuilder.Entity("PermissionPolicyRolePermissionPolicyUser", b =>
                 {
                     b.Property<int>("RolesID")
@@ -526,20 +331,6 @@ namespace Exambuddy2.Module.Migrations
                     b.HasIndex("UsersID");
 
                     b.ToTable("PermissionPolicyRolePermissionPolicyUser");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerFileData", b =>
-                {
-                    b.HasBaseType("DevExpress.Persistent.BaseImpl.EF.FileData");
-
-                    b.HasDiscriminator().HasValue("AnswerFileData");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.QuestionFileData", b =>
-                {
-                    b.HasBaseType("DevExpress.Persistent.BaseImpl.EF.FileData");
-
-                    b.HasDiscriminator().HasValue("QuestionFileData");
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyRole", b =>
@@ -603,78 +394,6 @@ namespace Exambuddy2.Module.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Answer", b =>
-                {
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.AnswerFileData", "DataFile")
-                        .WithMany()
-                        .HasForeignKey("FileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.Question", "Question")
-                        .WithMany("Answers")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("DataFile");
-
-                    b.Navigation("Question");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Question", b =>
-                {
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.QuestionFileData", "DataFile")
-                        .WithMany()
-                        .HasForeignKey("FileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.Topic", "Topic")
-                        .WithMany("Questions")
-                        .HasForeignKey("TopicId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DataFile");
-
-                    b.Navigation("Topic");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.TagLink", b =>
-                {
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.Question", "Question")
-                        .WithMany("TagLinks")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.Tag", "Tag")
-                        .WithMany()
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.Tag", null)
-                        .WithMany("TagLinks")
-                        .HasForeignKey("TagId1");
-
-                    b.Navigation("Question");
-
-                    b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Topic", b =>
-                {
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.CourseUnit", "CourseUnit")
-                        .WithMany("Topics")
-                        .HasForeignKey("CourseUnitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CourseUnit");
-                });
-
             modelBuilder.Entity("PermissionPolicyRolePermissionPolicyUser", b =>
                 {
                     b.HasOne("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyRole", null)
@@ -709,28 +428,6 @@ namespace Exambuddy2.Module.Migrations
                     b.Navigation("MemberPermissions");
 
                     b.Navigation("ObjectPermissions");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.CourseUnit", b =>
-                {
-                    b.Navigation("Topics");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Question", b =>
-                {
-                    b.Navigation("Answers");
-
-                    b.Navigation("TagLinks");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Tag", b =>
-                {
-                    b.Navigation("TagLinks");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Topic", b =>
-                {
-                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }

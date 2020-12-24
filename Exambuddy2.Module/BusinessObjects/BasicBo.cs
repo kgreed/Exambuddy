@@ -9,6 +9,7 @@ namespace Exambuddy2.Module.BusinessObjects
         [NotMapped] public virtual BasicBo Parent { get; set; }
         [Browsable(false)] [NotMapped] public IObjectSpace ObjectSpace { get; set; }
 
+
         public void OnCreated()
         {
         }

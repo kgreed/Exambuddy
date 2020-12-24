@@ -43,27 +43,6 @@ namespace Exambuddy2.Module.Migrations
                     b.ToTable("ModulesInfo");
                 });
 
-            modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.FileData", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<byte[]>("Content")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("FileData");
-                });
-
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.ModelDifference", b =>
                 {
                     b.Property<int>("ID")
@@ -353,6 +332,9 @@ namespace Exambuddy2.Module.Migrations
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("uncEndTime")
                         .HasColumnType("datetime2");
 
@@ -365,7 +347,30 @@ namespace Exambuddy2.Module.Migrations
 
                     b.HasIndex("QuestionId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Answers");
+                });
+
+            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerFileData", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<byte[]>("Content")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("FileDataAnswers");
                 });
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.CourseUnit", b =>
@@ -415,7 +420,30 @@ namespace Exambuddy2.Module.Migrations
 
                     b.HasIndex("FileId");
 
+                    b.HasIndex("SourceId");
+
                     b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.QuestionFileData", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<byte[]>("Content")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("FileDataQuestions");
                 });
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Source", b =>
@@ -424,9 +452,6 @@ namespace Exambuddy2.Module.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<int?>("DataFileID")
-                        .HasColumnType("int");
 
                     b.Property<int?>("FileId")
                         .HasColumnType("int");
@@ -446,11 +471,32 @@ namespace Exambuddy2.Module.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DataFileID");
+                    b.HasIndex("FileId");
 
                     b.HasIndex("TopicId");
 
                     b.ToTable("Sources");
+                });
+
+            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.SourceFileData", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<byte[]>("Content")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("FileDataSources");
                 });
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Topic", b =>
@@ -492,27 +538,6 @@ namespace Exambuddy2.Module.Migrations
                     b.HasIndex("UsersID");
 
                     b.ToTable("PermissionPolicyRolePermissionPolicyUser");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerFileData", b =>
-                {
-                    b.HasBaseType("DevExpress.Persistent.BaseImpl.EF.FileData");
-
-                    b.ToTable("FileDataAnswers");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.QuestionFileData", b =>
-                {
-                    b.HasBaseType("DevExpress.Persistent.BaseImpl.EF.FileData");
-
-                    b.ToTable("FileDataQuestions");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.SourceFileData", b =>
-                {
-                    b.HasBaseType("DevExpress.Persistent.BaseImpl.EF.FileData");
-
-                    b.ToTable("FileDataSources");
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyRole", b =>
@@ -588,9 +613,17 @@ namespace Exambuddy2.Module.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("DataFile");
 
                     b.Navigation("Question");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Question", b =>
@@ -601,7 +634,9 @@ namespace Exambuddy2.Module.Migrations
 
                     b.HasOne("Exambuddy2.Module.BusinessObjects.Source", "Source")
                         .WithMany("Questions")
-                        .HasForeignKey("FileId");
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DataFile");
 
@@ -612,7 +647,7 @@ namespace Exambuddy2.Module.Migrations
                 {
                     b.HasOne("Exambuddy2.Module.BusinessObjects.SourceFileData", "DataFile")
                         .WithMany()
-                        .HasForeignKey("DataFileID");
+                        .HasForeignKey("FileId");
 
                     b.HasOne("Exambuddy2.Module.BusinessObjects.Topic", "Topic")
                         .WithMany("Sources")
@@ -648,33 +683,6 @@ namespace Exambuddy2.Module.Migrations
                         .WithMany()
                         .HasForeignKey("UsersID")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerFileData", b =>
-                {
-                    b.HasOne("DevExpress.Persistent.BaseImpl.EF.FileData", null)
-                        .WithOne()
-                        .HasForeignKey("Exambuddy2.Module.BusinessObjects.AnswerFileData", "ID")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.QuestionFileData", b =>
-                {
-                    b.HasOne("DevExpress.Persistent.BaseImpl.EF.FileData", null)
-                        .WithOne()
-                        .HasForeignKey("Exambuddy2.Module.BusinessObjects.QuestionFileData", "ID")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.SourceFileData", b =>
-                {
-                    b.HasOne("DevExpress.Persistent.BaseImpl.EF.FileData", null)
-                        .WithOne()
-                        .HasForeignKey("Exambuddy2.Module.BusinessObjects.SourceFileData", "ID")
-                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
 

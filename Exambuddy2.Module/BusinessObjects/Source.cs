@@ -15,6 +15,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public Source()
         {
             Questions = new List<Question>();
+            DataFile = new SourceFileData();
         }
 
         public int TopicId { get; set; }
@@ -28,10 +29,9 @@ namespace Exambuddy2.Module.BusinessObjects
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         public string Information { get; set; }
-
+        [Aggregated] public virtual IList<Question> Questions { get; set; }
         [Browsable(false)] public int? FileId { get; set; }
         [ForeignKey("FileId")]
-        [Aggregated] public virtual IList<Question> Questions { get; set; }
         [Aggregated]
         [ExpandObjectMembers(ExpandObjectMembers.Never)]
         [VisibleInListView(false)]

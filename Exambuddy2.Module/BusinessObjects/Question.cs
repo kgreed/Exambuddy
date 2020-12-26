@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Text.Interop;
-
+using Exambuddy2.Module.Annotations;
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]
@@ -14,7 +15,7 @@ namespace Exambuddy2.Module.BusinessObjects
     [DefaultClassOptions]
     [ImageName("BO_Resume")]
 
-    public class Question : BasicBo // contains IObjectSpaceLink
+    public class Question : BasicBo , INotifyPropertyChanged// contains IObjectSpaceLink
     {
         public Question()
         {
@@ -33,11 +34,16 @@ namespace Exambuddy2.Module.BusinessObjects
         }
 
         private string _name { get; set; }
-        [ImmediatePostData]
+        //[ImmediatePostData]
         public string Name
         {
             get => _name;
-            set { _name = value;  }
+            set
+            {
+                _name = value;
+               // OnPropertyChanged();
+
+            }
         }
         [ImmediatePostData]
         public string QuestionNo { get; set; }
@@ -77,6 +83,14 @@ namespace Exambuddy2.Module.BusinessObjects
         {
             base.AddChild(child);
             Answers.Add(child as Answer);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

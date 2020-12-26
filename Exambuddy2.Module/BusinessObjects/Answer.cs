@@ -29,8 +29,8 @@ namespace Exambuddy2.Module.BusinessObjects
                 Question = bo.ObjectSpace.FindObject<Question>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
             }
         }
-        public  DateTime uncStartTime { get; set; }
-        public DateTime uncEndTime { get; set; }
+        //public  DateTime uncStartTime { get; set; }
+        //public DateTime uncEndTime { get; set; }
 
         [Browsable(false)]
         public int QuestionId { get; set; }

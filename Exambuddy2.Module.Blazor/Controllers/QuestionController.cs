@@ -6,25 +6,25 @@
 //namespace Exambuddy2.Module.Blazor.Controllers
 //{
 //    // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppViewControllertopic.aspx.
-//    public partial class AnswerController : ViewController
+//    public partial class QuestionController : ViewController
 //    {
-//        public AnswerController()
+//        public QuestionController()
 //        {
-//            InitializeComponent();
-//            TargetObjectType = typeof(Answer);
+//            //InitializeComponent();
+//            TargetObjectType = typeof(Question);
 //            var markStartAction = new SimpleAction(
-//                this, "MarkStart",
+//                this, "MarkStart2",
 //                PredefinedCategory.RecordEdit)
 //            {
 //                SelectionDependencyType = SelectionDependencyType.RequireSingleObject
 //            };
 //            markStartAction.Execute += (s, e) =>
 //            {
-//                foreach (Answer ans in e.SelectedObjects)
-//                {
-//                    ans.uncStartTime = DateTime.Now.ToUniversalTime();
-//                    View.ObjectSpace.SetModified(ans);
-//                }
+//                //foreach (Answer ans in e.SelectedObjects)
+//                //{
+//                //    ans.uncStartTime = DateTime.Now.ToUniversalTime();
+//                //    View.ObjectSpace.SetModified(ans);
+//                //}
 
 //                View.ObjectSpace.CommitChanges();
 //                View.ObjectSpace.Refresh();

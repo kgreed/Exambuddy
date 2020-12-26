@@ -4,14 +4,16 @@ using Exambuddy2.Module.BusinessObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Exambuddy2.Module.Migrations
 {
     [DbContext(typeof(Exambuddy2EFCoreDbContext))]
-    partial class Exambuddy2EFCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201226035259_more")]
+    partial class more
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -326,9 +328,6 @@ namespace Exambuddy2.Module.Migrations
                     b.Property<string>("AnswerText")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CreatedOrModifiedByUserId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("FileId")
                         .HasColumnType("int");
 
@@ -337,6 +336,12 @@ namespace Exambuddy2.Module.Migrations
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("uncEndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("uncStartTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -377,9 +382,6 @@ namespace Exambuddy2.Module.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("CreatedOrModifiedByUserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -397,9 +399,6 @@ namespace Exambuddy2.Module.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<int>("CreatedOrModifiedByUserId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("FileId")
                         .HasColumnType("int");
@@ -456,9 +455,6 @@ namespace Exambuddy2.Module.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("CreatedOrModifiedByUserId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("FileId")
                         .HasColumnType("int");
 
@@ -513,9 +509,6 @@ namespace Exambuddy2.Module.Migrations
                         .UseIdentityColumn();
 
                     b.Property<int>("CourseUnitId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CreatedOrModifiedByUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")

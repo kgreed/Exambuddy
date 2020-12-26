@@ -27,7 +27,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public DbSet<QuestionFileData> QuestionFileData { get; set; }
         public DbSet<SourceFileData> SourceFileData { get; set; }
         public DbSet<Answer> Answers { get; set; }
-
+       // public DbSet<QuestionRating> Ratings { get; set; }
         protected override void OnModelCreating(ModelBuilder mb)
         {
             base.OnModelCreating(mb);
@@ -42,5 +42,6 @@ namespace Exambuddy2.Module.BusinessObjects
             mb.Entity<Answer>().HasOne(b => b.Question).WithMany(i => i.Answers);
 
         }
+
     }
 }

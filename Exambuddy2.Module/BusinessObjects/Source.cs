@@ -18,9 +18,10 @@ namespace Exambuddy2.Module.BusinessObjects
             DataFile = new SourceFileData();
         }
 
+        [Browsable(false)]
         public int TopicId { get; set; }
-
-        public virtual Topic Topic { get; set; } 
+        [ForeignKey("TopicId")]
+        [Aggregated] public virtual Topic Topic { get; set; } 
 
         [MaxLength(255)]
         public string Name { get; set; }

@@ -7,6 +7,7 @@ using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Text.Interop;
+using DevExpress.XtraRichEdit.Layout;
 using Exambuddy2.Module.Annotations;
 namespace Exambuddy2.Module.BusinessObjects
 {
@@ -20,8 +21,9 @@ namespace Exambuddy2.Module.BusinessObjects
         public Question()
         {
             Answers = new List<Answer>();
-           
+            Comments = new List<QuestionComment>();
             DataFile = new QuestionFileData();
+            
         }
         public override BasicBo Parent
         {
@@ -61,7 +63,8 @@ namespace Exambuddy2.Module.BusinessObjects
 
         public string Tags { get; set; }
         [DevExpress.ExpressApp.DC.Aggregated] public virtual IList<Answer> Answers { get; set; }
-         
+
+        [DevExpress.ExpressApp.DC.Aggregated] public virtual IList<QuestionComment> Comments { get; set; }
         [Browsable(false)] public int? FileId { get; set; }
         [ForeignKey("FileId")]
         [Required]

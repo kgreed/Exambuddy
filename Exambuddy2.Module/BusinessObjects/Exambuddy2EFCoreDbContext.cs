@@ -27,18 +27,16 @@ namespace Exambuddy2.Module.BusinessObjects
         public DbSet<QuestionFileData> QuestionFileData { get; set; }
         public DbSet<SourceFileData> SourceFileData { get; set; }
         public DbSet<Answer> Answers { get; set; }
-       // public DbSet<QuestionRating> Ratings { get; set; }
+        public DbSet<QuestionCommentCategory> QuestionCommentCategories { get; set; }
+      
         protected override void OnModelCreating(ModelBuilder mb)
         {
             base.OnModelCreating(mb);
             mb.Entity<Topic>().HasOne(b => b.CourseUnit).WithMany(i => i.Topics);
             mb.Entity<Source>().HasOne(b => b.Topic).WithMany(i => i.Sources);
-            
-            //mb.Entity<SourceFileData>().HasOne(b => b.Source);
-            //mb.Entity<QuestionFileData>().HasOne(b => b.Question);
-            //mb.Entity<AnswerFileData>().HasOne(b => b.Answer);
-
             mb.Entity<Question>().HasOne(b => b.Source).WithMany(i => i.Questions);
+            mb.Entity<QuestionComment>().HasOne(b => b.Question).WithMany(i => i.Comments);
+            mb.Entity<QuestionComment>().HasOne(b => b.Category);
             mb.Entity<Answer>().HasOne(b => b.Question).WithMany(i => i.Answers);
 
         }

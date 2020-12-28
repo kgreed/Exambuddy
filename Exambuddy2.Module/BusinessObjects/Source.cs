@@ -21,6 +21,8 @@ namespace Exambuddy2.Module.BusinessObjects
         [Browsable(false)]
         public int TopicId { get; set; }
         [ForeignKey("TopicId")]
+        [VisibleInDetailView(true)]
+        [DevExpress.ExpressApp.Model.Required]
         [Aggregated] public virtual Topic Topic { get; set; } 
 
         [MaxLength(255)]

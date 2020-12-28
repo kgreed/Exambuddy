@@ -4,14 +4,16 @@ using Exambuddy2.Module.BusinessObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Exambuddy2.Module.Migrations
 {
     [DbContext(typeof(Exambuddy2EFCoreDbContext))]
-    partial class Exambuddy2EFCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201228184931_category")]
+    partial class category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -349,60 +351,6 @@ namespace Exambuddy2.Module.Migrations
                     b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("AnswerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CreatedOrModifiedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Score")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AnswerId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AnswerComments");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerCommentCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CreatedOrModifiedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AnswerCommentCategories");
-                });
-
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerFileData", b =>
                 {
                     b.Property<int>("ID")
@@ -501,11 +449,11 @@ namespace Exambuddy2.Module.Migrations
                     b.Property<int>("QuestonId")
                         .HasColumnType("int");
 
+                    b.Property<string>("RatingText")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Score")
                         .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -746,33 +694,6 @@ namespace Exambuddy2.Module.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerComment", b =>
-                {
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.Answer", "Answer")
-                        .WithMany("Comments")
-                        .HasForeignKey("AnswerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.AnswerCommentCategory", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Answer");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Question", b =>
                 {
                     b.HasOne("Exambuddy2.Module.BusinessObjects.QuestionFileData", "DataFile")
@@ -877,11 +798,6 @@ namespace Exambuddy2.Module.Migrations
                     b.Navigation("MemberPermissions");
 
                     b.Navigation("ObjectPermissions");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Answer", b =>
-                {
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.CourseUnit", b =>

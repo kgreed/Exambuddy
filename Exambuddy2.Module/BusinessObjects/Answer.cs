@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using DevExpress.Data.Filtering;
@@ -19,6 +20,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public Answer()
         {
             DataFile = new AnswerFileData();
+            Comments = new List<AnswerComment>();
         }
         public override BasicBo Parent
         {
@@ -29,8 +31,7 @@ namespace Exambuddy2.Module.BusinessObjects
                 Question = bo.ObjectSpace.FindObject<Question>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
             }
         }
-        //public  DateTime uncStartTime { get; set; }
-        //public DateTime uncEndTime { get; set; }
+        
 
         [Browsable(false)]
         public int QuestionId { get; set; }
@@ -61,5 +62,7 @@ namespace Exambuddy2.Module.BusinessObjects
         [ForeignKey("UserId")]
         public virtual PermissionPolicyUser User { get; set; }
 
+
+        [DevExpress.ExpressApp.DC.Aggregated] public virtual IList<AnswerComment> Comments { get; set; }
     }
 }

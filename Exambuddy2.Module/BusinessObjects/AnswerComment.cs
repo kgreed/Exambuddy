@@ -1,24 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 namespace Exambuddy2.Module.BusinessObjects
 {
-   [Table("QuestionComments")]
-    
-    public class QuestionComment : BasicBo
+    [Table("AnswerComments")]
+    [DefaultProperty("Text")]
+    public class AnswerComment : BasicBo
     {
         [Browsable(false)]
         [Required]
-        public int QuestonId { get; set; }
-        [ForeignKey("QuestionId")]
-        public virtual Question Question { get; set; }
+        public int AnswerId { get; set; }
+        [ForeignKey("AnswerId")]
+        public virtual Answer Answer { get; set; }
 
         [Browsable(false)]
-        public string Name => $"{Question?.QuestionNo} {Text}";
+        public string Name => $"{Text}";
+
 
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
@@ -33,7 +32,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public virtual QuestionCommentCategory Category { get; set; }
+        public virtual AnswerCommentCategory Category { get; set; }
         public int Score { get; set; }
 
     }

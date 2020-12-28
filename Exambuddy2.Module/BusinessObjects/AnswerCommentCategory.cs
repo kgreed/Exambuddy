@@ -4,7 +4,7 @@ namespace Exambuddy2.Module.BusinessObjects
     [NavigationItem("Main")]
     [DefaultClassOptions]
     [ImageName("BO_Resume")]
-    public class QuestionCommentCategory : BasicBo
+    public class AnswerCommentCategory : BasicBo
     {
         public string Name { get; set; }
     }

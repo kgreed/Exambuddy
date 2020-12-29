@@ -6,8 +6,8 @@ namespace Exambuddy2.Module.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            temporal5.AddTemporalTableSupport( migrationBuilder, "AnswerComments", "History");
-            temporal5.AddTemporalTableSupport(migrationBuilder, "AnswerCommentCategories", "History");
+            //temporal.AddTemporalTableSupport( migrationBuilder, "AnswerComments", "History");
+            //temporal.AddTemporalTableSupport(migrationBuilder, "AnswerCommentCategories", "History");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

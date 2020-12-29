@@ -6,12 +6,12 @@ namespace Exambuddy2.Module.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("CREATE SCHEMA History");
-            AddTemporalTableSupport(migrationBuilder, "Questions", "History");
-            AddTemporalTableSupport(migrationBuilder, "Answers", "History");
-            AddTemporalTableSupport(migrationBuilder, "Sources", "History");
-            AddTemporalTableSupport(migrationBuilder, "Topics", "History");
-            AddTemporalTableSupport(migrationBuilder, "CourseUnits", "History");
+            //migrationBuilder.Sql("CREATE SCHEMA History");
+            //AddTemporalTableSupport(migrationBuilder, "Questions", "History");
+            //AddTemporalTableSupport(migrationBuilder, "Answers", "History");
+            //AddTemporalTableSupport(migrationBuilder, "Sources", "History");
+            //AddTemporalTableSupport(migrationBuilder, "Topics", "History");
+            //AddTemporalTableSupport(migrationBuilder, "CourseUnits", "History");
 
         }
 

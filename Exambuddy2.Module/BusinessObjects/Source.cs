@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
@@ -48,6 +49,16 @@ namespace Exambuddy2.Module.BusinessObjects
         {
             get => DataFile?.Content;
             set => DataFile.Content = value;
+        }
+
+        public override BasicBo Parent
+        {
+            get => Topic;
+            set
+            {
+                var bo = value;
+                Topic= bo.ObjectSpace.FindObject<Topic>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
+            }
         }
         public override void AddChild(BasicBo child)
         {

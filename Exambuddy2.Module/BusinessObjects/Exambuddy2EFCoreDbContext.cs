@@ -39,7 +39,7 @@ namespace Exambuddy2.Module.BusinessObjects
             mb.Entity<QuestionComment>().HasOne(b => b.Question).WithMany(i => i.Comments);
             mb.Entity<QuestionComment>().HasOne(b => b.Category);
             mb.Entity<AnswerComment>().HasOne(b => b.Answer).WithMany(i => i.Comments);
-            mb.Entity<QuestionComment>().HasOne(b => b.Category);
+            mb.Entity<AnswerComment>().HasOne(b => b.Category);
             mb.Entity<Answer>().HasOne(b => b.Question).WithMany(i => i.Answers);
 
         }

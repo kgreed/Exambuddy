@@ -38,7 +38,11 @@ namespace Exambuddy2.Module.BusinessObjects
         public byte[] Photo
         {
             get => DataFile?.Content;
-            set => DataFile.Content = value;
+            set
+            {
+                DataFile ??= new SourceFileData();
+                DataFile.Content = value;
+            }
         }
         public override BasicBo Parent
         {

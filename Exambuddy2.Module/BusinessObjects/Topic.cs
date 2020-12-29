@@ -28,8 +28,10 @@ namespace Exambuddy2.Module.BusinessObjects
      
         public string Name { get; set; }
         public int Week { get; set; }
-        [Browsable(false)] public int CourseUnitId { get; set; }
-        [ForeignKey("CourseUnitId")] public virtual CourseUnit CourseUnit { get; set; }
+        [Browsable(false)]
+        public int CourseUnitId { get; set; }
+        [Browsable(true)]
+        [ForeignKey("CourseUnitId")]  public virtual CourseUnit CourseUnit { get; set; }
         [Aggregated] public virtual IList<Source> Sources { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]

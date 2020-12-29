@@ -20,12 +20,12 @@ namespace Exambuddy2.Module.BusinessObjects
             DataFile = new SourceFileData();
         }
 
-        [Browsable(false)]
+       // [Browsable(false)]
         public int TopicId { get; set; }
         [ForeignKey("TopicId")]
-        [VisibleInDetailView(true)]
-        [DevExpress.ExpressApp.Model.Required]
-        [Aggregated] public virtual Topic Topic { get; set; } 
+        //[VisibleInDetailView(true)]
+       // [DevExpress.ExpressApp.Model.Required]
+        public virtual Topic Topic { get; set; } 
 
         [MaxLength(255)]
         public string Name { get; set; }

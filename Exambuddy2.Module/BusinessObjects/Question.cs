@@ -47,18 +47,18 @@ namespace Exambuddy2.Module.BusinessObjects
 
             }
         }
-        [ImmediatePostData]
+       // [ImmediatePostData]
         public string QuestionNo { get; set; }
 
 
 
-        [Browsable(false)]
+      //  [Browsable(false)]
         public int SourceId { get; set; }
         [ForeignKey("SourceId")]
         public virtual Source Source { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
-        [ImmediatePostData]
+        //[ImmediatePostData]
         public string QuestionText { get; set; }
 
         public string Tags { get; set; }

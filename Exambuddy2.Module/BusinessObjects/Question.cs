@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Text.Interop;
@@ -22,7 +23,7 @@ namespace Exambuddy2.Module.BusinessObjects
         {
             Answers = new List<Answer>();
             Comments = new List<QuestionComment>();
-            DataFile = new QuestionFileData();
+             
             
         }
         public override BasicBo Parent
@@ -62,14 +63,13 @@ namespace Exambuddy2.Module.BusinessObjects
         public string QuestionText { get; set; }
 
         public string Tags { get; set; }
-        [DevExpress.ExpressApp.DC.Aggregated] public virtual IList<Answer> Answers { get; set; }
+        public virtual IList<Answer> Answers { get; set; }
 
-        [DevExpress.ExpressApp.DC.Aggregated] public virtual IList<QuestionComment> Comments { get; set; }
+        public virtual IList<QuestionComment> Comments { get; set; }
         [Browsable(false)] public int? FileId { get; set; }
         [ForeignKey("FileId")]
-        [Required]
-        [DevExpress.ExpressApp.DC.Aggregated]
-        [ExpandObjectMembers(ExpandObjectMembers.Never)]
+         
+        [Aggregated,ExpandObjectMembers(ExpandObjectMembers.Never)]
         [VisibleInListView(false)]
         public virtual QuestionFileData DataFile { get; set; }
         //[Size(-1)]

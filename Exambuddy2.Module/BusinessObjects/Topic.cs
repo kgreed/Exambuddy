@@ -32,7 +32,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public int CourseUnitId { get; set; }
         [Browsable(true)]
         [ForeignKey("CourseUnitId")]  public virtual CourseUnit CourseUnit { get; set; }
-        [Aggregated] public virtual IList<Source> Sources { get; set; }
+         public virtual IList<Source> Sources { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         public string TopicNotes { get; set; }

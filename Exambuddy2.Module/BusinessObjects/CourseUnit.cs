@@ -14,7 +14,7 @@ namespace Exambuddy2.Module.BusinessObjects
         }
 
         public string Name { get; set; }
-        [Aggregated] public virtual IList<Topic> Topics { get; set; }
+        public virtual IList<Topic> Topics { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         public string Description { get; set; }

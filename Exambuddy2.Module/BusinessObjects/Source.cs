@@ -6,7 +6,6 @@ using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
- 
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]
@@ -17,31 +16,22 @@ namespace Exambuddy2.Module.BusinessObjects
         public Source()
         {
             Questions = new List<Question>();
-            DataFile = new SourceFileData();
         }
 
-       // [Browsable(false)]
-        public int TopicId { get; set; }
-        [ForeignKey("TopicId")]
-        //[VisibleInDetailView(true)]
-       // [DevExpress.ExpressApp.Model.Required]
-        public virtual Topic Topic { get; set; } 
-
-        [MaxLength(255)]
-        public string Name { get; set; }
-       
+        [Browsable(false)] public int TopicId { get; set; }
+        [ForeignKey("TopicId")] public virtual Topic Topic { get; set; }
+        [MaxLength(255)] public string Name { get; set; }
         public SourceType Type { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         public string Information { get; set; }
-        [Aggregated] public virtual IList<Question> Questions { get; set; }
+        public virtual IList<Question> Questions { get; set; }
         [Browsable(false)] public int? FileId { get; set; }
         [ForeignKey("FileId")]
         [Aggregated]
         [ExpandObjectMembers(ExpandObjectMembers.Never)]
         [VisibleInListView(false)]
         public virtual SourceFileData DataFile { get; set; }
-        
         [NotMapped]
         [ImageEditor]
         [VisibleInListView(false)]
@@ -50,16 +40,16 @@ namespace Exambuddy2.Module.BusinessObjects
             get => DataFile?.Content;
             set => DataFile.Content = value;
         }
-
         public override BasicBo Parent
         {
             get => Topic;
             set
             {
                 var bo = value;
-                Topic= bo.ObjectSpace.FindObject<Topic>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
+                Topic = bo.ObjectSpace.FindObject<Topic>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
             }
         }
+
         public override void AddChild(BasicBo child)
         {
             base.AddChild(child);

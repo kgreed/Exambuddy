@@ -19,7 +19,7 @@ namespace Exambuddy2.Module.BusinessObjects
     {
         public Answer()
         {
-            DataFile = new AnswerFileData();
+            
             Comments = new List<AnswerComment>();
         }
         public override BasicBo Parent
@@ -46,7 +46,7 @@ namespace Exambuddy2.Module.BusinessObjects
         [Browsable(false)]
         public int? FileId { get; set; }
         [ForeignKey("FileId")]
-        [Required]
+         
         [Aggregated, ExpandObjectMembers(ExpandObjectMembers.Never)]
         public virtual AnswerFileData DataFile { get; set; }
 

@@ -16,7 +16,7 @@ namespace Exambuddy2.Module.BusinessObjects
     [DefaultClassOptions]
     [ImageName("BO_Resume")]
 
-    public class Question : BasicBo , INotifyPropertyChanged// contains IObjectSpaceLink
+    public class Question : BasicBo //, INotifyPropertyChanged// contains IObjectSpaceLink
     {
         public Question()
         {
@@ -88,12 +88,12 @@ namespace Exambuddy2.Module.BusinessObjects
             Answers.Add(child as Answer);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //[NotifyPropertyChangedInvocator]
+        //protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
     }
 }

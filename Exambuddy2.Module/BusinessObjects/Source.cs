@@ -10,6 +10,7 @@ namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]
     [DefaultClassOptions]
+    [FileAttachment(nameof(DataFile))]
     public class Source : BasicBo
     {
         public Source()

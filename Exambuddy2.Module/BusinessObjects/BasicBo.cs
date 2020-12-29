@@ -13,7 +13,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public int CreatedOrModifiedByUserId { get; set; }
         public void OnCreated()
         {
-            //CreatedOrModifiedByUserId =  (int) SecuritySystem.CurrentUserId;
+            CreatedOrModifiedByUserId =  (int) SecuritySystem.CurrentUserId;
         }
 
         public void OnSaving()

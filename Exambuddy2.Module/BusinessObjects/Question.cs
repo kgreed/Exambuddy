@@ -41,7 +41,7 @@ namespace Exambuddy2.Module.BusinessObjects
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         public string QuestionText { get; set; }
-        public string Tags { get; set; }
+        
         public virtual IList<Answer> Answers { get; set; }
         public virtual IList<QuestionComment> Comments { get; set; }
         [Browsable(false)] public int? FileId { get; set; }

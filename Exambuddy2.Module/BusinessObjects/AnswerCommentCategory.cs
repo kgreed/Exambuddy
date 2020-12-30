@@ -7,7 +7,7 @@ namespace Exambuddy2.Module.BusinessObjects
     
     [ImageName("BO_Resume")]
     [Table("AnswerCommentCategories")]
-    public class AnsCommentCat : BasicBo
+    public class AnswerCommentCategpry : BasicBo
     {
         public string Name { get; set; }
     }

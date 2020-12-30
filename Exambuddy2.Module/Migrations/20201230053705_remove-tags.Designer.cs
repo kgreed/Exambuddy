@@ -4,14 +4,16 @@ using Exambuddy2.Module.BusinessObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Exambuddy2.Module.Migrations
 {
     [DbContext(typeof(Exambuddy2EFCoreDbContext))]
-    partial class Exambuddy2EFCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201230053705_remove-tags")]
+    partial class removetags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -316,6 +318,24 @@ namespace Exambuddy2.Module.Migrations
                     b.ToTable("ReportDataV2");
                 });
 
+            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnsCommentCat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("CreatedOrModifiedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AnswerCommentCategories");
+                });
+
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Answer", b =>
                 {
                     b.Property<int>("Id")
@@ -375,24 +395,6 @@ namespace Exambuddy2.Module.Migrations
                     b.ToTable("AnswerComments");
                 });
 
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerCommentCategpry", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CreatedOrModifiedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AnswerCommentCategories");
-                });
-
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerFileData", b =>
                 {
                     b.Property<int>("ID")
@@ -433,6 +435,24 @@ namespace Exambuddy2.Module.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CourseUnits");
+                });
+
+            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.QuestCommentCat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("CreatedOrModifiedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuestionCommentCategories");
                 });
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.Question", b =>
@@ -498,24 +518,6 @@ namespace Exambuddy2.Module.Migrations
                     b.HasIndex("QuestionId");
 
                     b.ToTable("QuestionComments");
-                });
-
-            modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.QuestionCommentCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CreatedOrModifiedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("QuestionCommentCategories");
                 });
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.QuestionFileData", b =>
@@ -725,7 +727,7 @@ namespace Exambuddy2.Module.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.AnswerCommentCategpry", "Category")
+                    b.HasOne("Exambuddy2.Module.BusinessObjects.AnsCommentCat", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -755,7 +757,7 @@ namespace Exambuddy2.Module.Migrations
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.QuestionComment", b =>
                 {
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.QuestionCommentCategory", "Category")
+                    b.HasOne("Exambuddy2.Module.BusinessObjects.QuestCommentCat", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId");
 

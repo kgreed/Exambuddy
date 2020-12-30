@@ -27,8 +27,8 @@ namespace Exambuddy2.Module.BusinessObjects
         public DbSet<QuestionFileData> QuestionFileData { get; set; }
         public DbSet<SourceFileData> SourceFileData { get; set; }
         public DbSet<Answer> Answers { get; set; }
-        public DbSet<QuestCommentCat> QuestionCommentCategories { get; set; }
-        public DbSet<AnsCommentCat> AnswerCommentCategories { get; set; }
+        public DbSet<QuestionCommentCategory> QuestionCommentCategories { get; set; }
+        public DbSet<AnswerCommentCategpry> AnswerCommentCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {

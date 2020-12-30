@@ -23,8 +23,8 @@ namespace Exambuddy2.Module.Migrations
             string tableName, string historyTableSchema)
         {
             builder.Sql($@"ALTER TABLE {tableName} ADD 
-                    SysStartTime datetime2(0) GENERATED ALWAYS AS ROW START HIDDEN NOT NULL,
-                    SysEndTime datetime2(0) GENERATED ALWAYS AS ROW END HIDDEN NOT NULL,
+                    SysStartTime datetime2(0) GENERATED ALWAYS AS ROW START HIDDEN NOT NULL DEFAULT GETUTCDATE() ,
+                    SysEndTime datetime2(0) GENERATED ALWAYS AS ROW END HIDDEN NOT NULL DEFAULT CONVERT(DATETIME2(0), '9999-12-31 23:59:59'),
                     PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime);");
             builder.Sql($@"ALTER TABLE {tableName} 
         SET (SYSTEM_VERSIONING = ON (HISTORY_TABLE = {historyTableSchema}.{tableName} ));");

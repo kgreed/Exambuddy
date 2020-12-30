@@ -32,7 +32,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public virtual AnsCommentCat Category { get; set; }
+        public virtual AnswerCommentCategpry Category { get; set; }
         public int Score { get; set; }
 
     }

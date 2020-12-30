@@ -39,7 +39,7 @@ namespace Exambuddy2.Module.BusinessObjects
         public int? CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public virtual QuestCommentCat Category { get; set; }
+        public virtual QuestionCommentCategory Category { get; set; }
         public int Score { get; set; }
 
         public override BasicBo Parent

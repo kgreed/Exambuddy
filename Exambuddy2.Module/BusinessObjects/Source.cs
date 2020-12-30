@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
@@ -40,8 +43,20 @@ namespace Exambuddy2.Module.BusinessObjects
             get => DataFile?.Content;
             set
             {
-                DataFile ??= new SourceFileData();
-                DataFile.Content = value;
+               
+                    var df = ObjectSpace.FindObject<SourceFileData>(CriteriaOperator.Parse("[Id]=? ", FileId));
+                    if (df == null)
+                    {
+                        DataFile ??= new SourceFileData();
+                    }
+
+                    if (DataFile == null)
+                    {
+                       throw new Exception("DataFile is null even though it exists");
+                    }
+
+                    DataFile.Content = value;
+                
             }
         }
         public override BasicBo Parent

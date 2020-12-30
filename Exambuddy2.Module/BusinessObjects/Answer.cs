@@ -11,7 +11,7 @@ using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 //using DevExpress.Xpo;
 namespace Exambuddy2.Module.BusinessObjects
 {
-    [NavigationItem("Main")]
+    [NavigationItem("01 Main")]
 
     [FileAttachment(nameof(DataFile))]
     [DefaultClassOptions, ImageName("BO_Resume")]
@@ -48,6 +48,7 @@ namespace Exambuddy2.Module.BusinessObjects
         [ForeignKey("FileId")]
          
         [Aggregated, ExpandObjectMembers(ExpandObjectMembers.Never)]
+        [VisibleInListView(false)]
         public virtual AnswerFileData DataFile { get; set; }
 
 
@@ -55,14 +56,32 @@ namespace Exambuddy2.Module.BusinessObjects
         //[Delayed(true)]
         [NotMapped]
         [ImageEditor]
-        public byte[] Photo { get => DataFile?.Content; set => DataFile.Content = value; }
-
-        [Browsable(false)]
-        public int UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual PermissionPolicyUser User { get; set; }
+       // [VisibleInListView(false)]
+        public byte[] Photo
+        {
+            get => DataFile?.Content;
+            set
+            {
+                var df = ObjectSpace.FindObject<AnswerFileData>(CriteriaOperator.Parse("[Id]=? ", FileId));
+                if (df == null) DataFile ??= new AnswerFileData();
+                if (DataFile == null) throw new Exception("DataFile is null even though it exists");
+                DataFile.Content = value;
+            }
+        }
 
 
         [DevExpress.ExpressApp.DC.Aggregated] public virtual IList<AnswerComment> Comments { get; set; }
+
+        public override void AddChild(BasicBo child)
+        {
+            base.AddChild(child);
+            switch (child)
+            {
+                 
+                case AnswerComment ac:
+                    Comments.Add(ac);
+                    break;
+            }
+        }
     }
 }

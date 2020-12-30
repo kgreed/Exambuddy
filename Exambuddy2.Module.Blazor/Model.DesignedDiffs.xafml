@@ -2,8 +2,10 @@
 <Application>
   <NavigationItems>
     <Items>
-      <Item Id="Main">
+      <Item Id="01 Main">
         <Items>
+          <Item Id="CourseUnit_ListView" Index="0" />
+          <Item Id="Topic_ListView" Index="1" />
           <Item Id="Source_ListView" Index="2" />
           <Item Id="Question_ListView" Index="3" />
           <Item Id="Answer_ListView" Index="4" />
@@ -14,4 +16,24 @@
   <SchemaModules>
     <SchemaModule Name="SystemModule" Version="20.2.4.0" IsNewNode="True" />
   </SchemaModules>
+  <Views>
+    <DetailView Id="Source_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Source">
+              <LayoutGroup Id="Source_col1">
+                <LayoutItem Id="Type" ViewItem="Type" ShowCaption="" Index="2" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Source_col2" Index="1" ShowCaption="False" IsNewNode="True" Removed="True">
+                <LayoutItem Id="DataFile" ViewItem="DataFile" ShowCaption="" Index="0" IsNewNode="True" />
+                <LayoutItem Id="Type" ViewItem="Type" ShowCaption="" Index="2" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutItem Id="Photo" ViewItem="Photo" ShowCaption="" Index="1" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
 </Application>

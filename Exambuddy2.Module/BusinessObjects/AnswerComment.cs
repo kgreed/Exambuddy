@@ -23,16 +23,16 @@ namespace Exambuddy2.Module.BusinessObjects
         [ModelDefault("RowCount", "4")]
         public string  Text { get; set; }
 
-        [Browsable(false)]
-        [Required]
-        public int UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual PermissionPolicyUser User { get; set; }
+        //[Browsable(false)]
+        //[Required]
+        //public int UserId { get; set; }
+        //[ForeignKey("UserId")]
+        //public virtual PermissionPolicyUser User { get; set; }
         [Browsable(false)]
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public virtual AnswerCommentCategory Category { get; set; }
+        public virtual AnsCommentCat Category { get; set; }
         public int Score { get; set; }
 
     }

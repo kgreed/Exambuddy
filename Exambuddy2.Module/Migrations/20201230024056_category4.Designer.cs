@@ -4,14 +4,16 @@ using Exambuddy2.Module.BusinessObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Exambuddy2.Module.Migrations
 {
     [DbContext(typeof(Exambuddy2EFCoreDbContext))]
-    partial class Exambuddy2EFCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201230024056_category4")]
+    partial class category4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -335,11 +337,16 @@ namespace Exambuddy2.Module.Migrations
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FileId");
 
                     b.HasIndex("QuestionId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Answers");
                 });
@@ -479,24 +486,16 @@ namespace Exambuddy2.Module.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CreatedOrModifiedByUserId")
                         .HasColumnType("int");
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Score")
-                        .HasColumnType("int");
-
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("QuestionId");
 
@@ -715,9 +714,17 @@ namespace Exambuddy2.Module.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("DataFile");
 
                     b.Navigation("Question");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.AnswerComment", b =>
@@ -758,17 +765,11 @@ namespace Exambuddy2.Module.Migrations
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.QuestionComment", b =>
                 {
-                    b.HasOne("Exambuddy2.Module.BusinessObjects.QuestionCommentCategory", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("Exambuddy2.Module.BusinessObjects.Question", "Question")
                         .WithMany("Comments")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
 
                     b.Navigation("Question");
                 });

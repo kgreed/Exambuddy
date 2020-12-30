@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics;
 using DevExpress.Data.Filtering;
-using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 namespace Exambuddy2.Module.BusinessObjects
 {
-    [NavigationItem("Main")]
+    [NavigationItem("01 Main")]
     [DefaultClassOptions]
     [FileAttachment(nameof(DataFile))]
     public class Source : BasicBo
@@ -43,20 +41,10 @@ namespace Exambuddy2.Module.BusinessObjects
             get => DataFile?.Content;
             set
             {
-               
-                    var df = ObjectSpace.FindObject<SourceFileData>(CriteriaOperator.Parse("[Id]=? ", FileId));
-                    if (df == null)
-                    {
-                        DataFile ??= new SourceFileData();
-                    }
-
-                    if (DataFile == null)
-                    {
-                       throw new Exception("DataFile is null even though it exists");
-                    }
-
-                    DataFile.Content = value;
-                
+                var df = ObjectSpace.FindObject<SourceFileData>(CriteriaOperator.Parse("[Id]=? ", FileId));
+                if (df == null) DataFile ??= new SourceFileData();
+                if (DataFile == null) throw new Exception("DataFile is null even though it exists");
+                DataFile.Content = value;
             }
         }
         public override BasicBo Parent

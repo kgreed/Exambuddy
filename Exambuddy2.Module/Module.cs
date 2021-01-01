@@ -14,6 +14,7 @@ using DevExpress.ExpressApp.Model.Core;
 using DevExpress.ExpressApp.Model.DomainLogics;
 using DevExpress.ExpressApp.Model.NodeGenerators;
 using DevExpress.ExpressApp.ReportsV2;
+using DevExpress.Persistent.BaseImpl.EF;
 using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 namespace Exambuddy2.Module {
     // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.ModuleBase.
@@ -21,10 +22,11 @@ namespace Exambuddy2.Module {
         public Exambuddy2Module() {
             InitializeComponent();
 			DevExpress.ExpressApp.Security.SecurityModule.UsedExportedTypes = DevExpress.Persistent.Base.UsedExportedTypes.Custom;
-			AdditionalExportedTypes.Add(typeof(DevExpress.Persistent.BaseImpl.EF.FileData));
-			AdditionalExportedTypes.Add(typeof(DevExpress.Persistent.BaseImpl.EF.FileAttachment));
+			AdditionalExportedTypes.Add(typeof(FileData));
+			AdditionalExportedTypes.Add(typeof(FileAttachment));
             AdditionalExportedTypes.Add(typeof(PermissionPolicyUser));
             AdditionalExportedTypes.Add(typeof(PermissionPolicyRole));
+            AdditionalExportedTypes.Add(typeof(Note));
         }
         public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
             ModuleUpdater updater = new DatabaseUpdate.Updater(objectSpace, versionFromDB);

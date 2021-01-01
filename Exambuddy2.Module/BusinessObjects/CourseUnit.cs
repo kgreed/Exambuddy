@@ -5,7 +5,7 @@ using DevExpress.Persistent.Base;
 //using DevExpress.Xpo;
 namespace Exambuddy2.Module.BusinessObjects
 {
-    [NavigationItem("01 Main")]
+    [NavigationItem("Main")]
     public class CourseUnit : BasicBo
     {
         public CourseUnit()

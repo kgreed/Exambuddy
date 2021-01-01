@@ -6,8 +6,8 @@
         <LayoutGroup Id="Main">
           <LayoutGroup Id="SimpleEditors">
             <LayoutGroup Id="Question">
-              <LayoutGroup Id="Question_col2">
-                <LayoutItem Id="Topic" Removed="True" />
+              <LayoutGroup Id="Question_col1">
+                <LayoutItem Id="Topic" ViewItem="Topic" />
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>

@@ -9,7 +9,7 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 namespace Exambuddy2.Module.BusinessObjects
 {
-    [NavigationItem("01 Main")]
+    [NavigationItem("Main")]
     [DefaultClassOptions]
     [FileAttachment(nameof(DataFile))]
     public class Source : BasicBo
@@ -22,7 +22,9 @@ namespace Exambuddy2.Module.BusinessObjects
         [Browsable(false)] public int TopicId { get; set; }
         [ForeignKey("TopicId")] public virtual Topic Topic { get; set; }
         [MaxLength(255)] public string Name { get; set; }
+        
         public SourceType Type { get; set; }
+      
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         public string Information { get; set; }

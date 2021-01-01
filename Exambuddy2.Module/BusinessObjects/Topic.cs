@@ -8,7 +8,7 @@ using DevExpress.Persistent.Base;
  
 namespace Exambuddy2.Module.BusinessObjects
 {
-    [NavigationItem("01 Main")]
+    [NavigationItem("Main")]
     public class Topic : BasicBo
     {
         public Topic()

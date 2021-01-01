@@ -8,7 +8,8 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 namespace Exambuddy2.Module.BusinessObjects
 {
-    [NavigationItem("01 Main")]
+    
+    [NavigationItem("Main")]
     [FileAttachment(nameof(DataFile))]
     [DefaultClassOptions]
     [ImageName("BO_Resume")]
@@ -80,7 +81,7 @@ namespace Exambuddy2.Module.BusinessObjects
                     break;
             }
         }
-
+       
         //public event PropertyChangedEventHandler PropertyChanged;
 
         //[NotifyPropertyChangedInvocator]

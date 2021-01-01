@@ -2,7 +2,7 @@
 using DevExpress.Persistent.Base;
 namespace Exambuddy2.Module.BusinessObjects
 {
-    [NavigationItem("09 Config")]
+    [NavigationItem("Config")]
     [DefaultClassOptions]
     
     [ImageName("BO_Resume")]

@@ -2,7 +2,7 @@
 <Application Title="Exam Buddy">
   <NavigationItems>
     <Items>
-      <Item Id="Main">
+      <Item Id="Main" Index="0">
         <Items>
           <Item Id="CourseUnit_ListView" Index="0" />
           <Item Id="Topic_ListView" Index="1" />
@@ -10,6 +10,15 @@
           <Item Id="Answer_ListView" Index="3" />
         </Items>
       </Item>
+      <Item Id="Config" Index="1" />
+      <Item Id="Default" Caption="Users" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="MyDetails" ViewId="PermissionPolicyUser_DetailView" ObjectKey="@CurrentUserID" Caption="My Details" IsNewNode="True" />
+          <Item Id="PermissionPolicyRole_ListView" ViewId="PermissionPolicyRole_ListView" Caption="My Role" IsNewNode="True" />
+          <Item Id="PermissionPolicyUser_ListView" ViewId="PermissionPolicyUser_ListView" Caption="My User" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Reports" Visible="True" />
     </Items>
   </NavigationItems>
   <Options>

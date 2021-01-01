@@ -11,7 +11,7 @@ using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 //using DevExpress.Xpo;
 namespace Exambuddy2.Module.BusinessObjects
 {
-    [NavigationItem("01 Main")]
+    [NavigationItem("Main")]
 
     [FileAttachment(nameof(DataFile))]
     [DefaultClassOptions, ImageName("BO_Resume")]

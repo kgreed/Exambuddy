@@ -44,4 +44,9 @@
     </PackageReference>
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.*" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="UnusableNodes.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+  </ItemGroup>
 </Project>

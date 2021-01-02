@@ -1,8 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
+using DevExpress.PivotGrid.Internal;
 using Exambuddy2.Module.BusinessObjects;
 using Exambuddy2.Module.BusinessObjects.NonPersistent;
 using Exambuddy2.Module.Functions;
@@ -15,7 +17,7 @@ namespace Exambuddy2.Module.Blazor.Controllers
         {
             TargetObjectType = typeof(Answer);
             var action = new PopupWindowShowAction(
-                this, "EditMins",
+                this, "Mins",
                 PredefinedCategory.RecordEdit)
             {
                 SelectionDependencyType = SelectionDependencyType.RequireSingleObject
@@ -23,11 +25,7 @@ namespace Exambuddy2.Module.Blazor.Controllers
             action.CustomizePopupWindowParams += Action_CustomizePopupWindowParams;
             action.Execute += (s, e) =>
             {
-               Debug.Print("Hi"); //never reached
-                 
-                var obj = e.PopupWindowViewCurrentObject as MyNote;
-                var num = GetSecsDuringLastEdit();
-                obj.Text = $" Last edit took {num} secs";
+              
             };
         }
 
@@ -48,10 +46,15 @@ namespace Exambuddy2.Module.Blazor.Controllers
             var note = new MyNote {ObjectSpace = new NonPersistentObjectSpace(new TypesInfo())};
             e.View = Application.CreateDetailView(note);
 
-            var num = GetSecsDuringLastEdit();
-            note.Text = $" Last edit took {num} secs";
-
-            
+            var secs = GetSecsDuringLastEdit();
+            if (secs == null)
+            {
+                note.Text = "There is no prior edit"
+                return;
+            }
+            double secsperMin = 60;
+            var mins =  Math.Round( (int)secs /secsperMin,2,MidpointRounding.AwayFromZero)  ;
+            note.Text = $" Last edit took {mins} mins";
         }
 
         protected override void OnActivated()

@@ -14,8 +14,9 @@ namespace Exambuddy2.Module.Functions
     {
         public static Exambuddy2EFCoreDbContext MakeContext()
         {
+            var connectionString = HandyFunctions.GetConnectionString();
             var builder = new DbContextOptionsBuilder<Exambuddy2EFCoreDbContext>()
-                .UseSqlServer(@";");
+                .UseSqlServer(connectionString);
             
             return new Exambuddy2EFCoreDbContext(builder.Options);
         }

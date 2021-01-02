@@ -6,6 +6,8 @@ using System.Linq;
 using Exambuddy2.Module.BusinessObjects;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 namespace Exambuddy2.Module.Functions
 {
     public static class HandyFunctions
@@ -44,6 +46,14 @@ namespace Exambuddy2.Module.Functions
             var connect = MakeContext();
             var results = RunQuery(connect, sql, x => new DtoInt { Num = (int)x[0] } );
             return results.Count == 0 ? null : results.FirstOrDefault()?.Num;
+        }
+
+        public static string GetConnectionString()
+        {
+            var builder = new  ConfigurationBuilder();
+            builder.AddJsonFile("Connections.json");
+            var build =builder.Build();
+            return build.GetConnectionString("ConnectionString");
         }
     }
     public class DtoInt

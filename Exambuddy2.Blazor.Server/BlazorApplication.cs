@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using DevExpress.ExpressApp.EFCore;
 
 using DevExpress.EntityFrameworkCore.Security;
-
+using Exambuddy2.Module.Functions;
 namespace Exambuddy2.Blazor.Server {
     public partial class Exambuddy2BlazorApplication : BlazorApplication {
         public Exambuddy2BlazorApplication() {
@@ -19,17 +19,15 @@ namespace Exambuddy2.Blazor.Server {
         }
         protected override void OnSetupStarted() {
             base.OnSetupStarted();
-            IConfiguration configuration = ServiceProvider.GetRequiredService<IConfiguration>();
-            if(configuration.GetConnectionString("ConnectionString") != null) {
-                ConnectionString = configuration.GetConnectionString("ConnectionString");
-            }
+            ConnectionString = HandyFunctions.GetConnectionString();
+ 
 #if EASYTEST
             if(configuration.GetConnectionString("EasyTestConnectionString") != null) {
                 ConnectionString = configuration.GetConnectionString("EasyTestConnectionString");
             }
 #endif
 #if DEBUG
-            if(System.Diagnostics.Debugger.IsAttached && CheckCompatibilityType == CheckCompatibilityType.DatabaseSchema) {
+            if (System.Diagnostics.Debugger.IsAttached && CheckCompatibilityType == CheckCompatibilityType.DatabaseSchema) {
                 DatabaseUpdateMode = DatabaseUpdateMode.UpdateDatabaseAlways;
             }
 #endif

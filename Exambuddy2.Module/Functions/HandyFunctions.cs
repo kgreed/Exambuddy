@@ -21,6 +21,14 @@ namespace Exambuddy2.Module.Functions
             return new Exambuddy2EFCoreDbContext(builder.Options);
         }
 
+        public static string GetConnectionString()
+        {
+            var builder = new ConfigurationBuilder();
+            builder.AddJsonFile("Connections.json");
+            var build = builder.Build();
+            return build.GetConnectionString("ConnectionString");
+        }
+
         public static List<T> RunQuery<T>(Exambuddy2EFCoreDbContext context, string query, Func<DbDataReader, T> map,
             params SqlParameter[] parameters)
         {
@@ -49,16 +57,19 @@ namespace Exambuddy2.Module.Functions
             return results.Count == 0 ? null : results.FirstOrDefault()?.Num;
         }
 
-        public static string GetConnectionString()
+        public static DateTime? RunDateQuery(string sql)
         {
-            var builder = new  ConfigurationBuilder();
-            builder.AddJsonFile("Connections.json");
-            var build =builder.Build();
-            return build.GetConnectionString("ConnectionString");
+            var connect = MakeContext();
+            var results = RunQuery(connect, sql, x => new DtoDate { Dt = (DateTime)x[0] });
+            return results.Count == 0 ? null : results.FirstOrDefault()?.Dt;
         }
     }
     public class DtoInt
     {
         public int Num { get; set; }
+    }
+    public class DtoDate
+    {
+        public DateTime Dt { get; set; }
     }
 }

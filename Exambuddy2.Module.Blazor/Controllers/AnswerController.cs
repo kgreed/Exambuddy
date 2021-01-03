@@ -16,32 +16,62 @@ namespace Exambuddy2.Module.Blazor.Controllers
         public AnswerController()
         {
             TargetObjectType = typeof(Answer);
-            var action = new PopupWindowShowAction(
+
+            var actionStartEdit = new PopupWindowShowAction(
+                this, "Start",
+                PredefinedCategory.RecordEdit)
+            {
+                SelectionDependencyType = SelectionDependencyType.RequireSingleObject
+            };
+            
+           actionStartEdit.CustomizePopupWindowParams += Action_CustomizeStartEditPopupWindowParams;
+            actionStartEdit.Execute += (s, e) => { };
+
+
+            var actionShowLastEditMins = new PopupWindowShowAction(
                 this, "Mins",
                 PredefinedCategory.RecordEdit)
             {
                 SelectionDependencyType = SelectionDependencyType.RequireSingleObject
             };
-            action.CustomizePopupWindowParams += Action_CustomizePopupWindowParams;
-            action.Execute += (s, e) =>
-            {
-              
-            };
+            actionShowLastEditMins.CustomizePopupWindowParams += Action_CustomizeMinsPopupWindowParams;
+            actionShowLastEditMins.Execute += (s, e) => { };
+
         }
 
-        private   int? GetSecsDuringLastEdit( )
+        private   int? GetSecsDuringLastEdit(  )
         {
+            // look for history record up to a millisecond before the current record
             if (!(View.CurrentObject is Answer ans)) return null;
             var sql = @$"declare @dttime datetime
-                select @dttime = [SysStartTime] from answers where id = 14
+                select @dttime = [SysStartTime] from answers where id = {ans.Id}
                 declare @dttimeprev datetime
-                select @dttimeprev = DATEADD(s, -1, @dttime)
+                select @dttimeprev = DATEADD(ms, -1, @dttime)
                 select   datediff(s, sysstarttime, sysendtime) as Num from answers for SYSTEM_TIME as of @dttimeprev  where id = {ans.Id}";
             return HandyFunctions.RunNumQuery(sql);
             
         }
 
-        private void Action_CustomizePopupWindowParams(object sender, CustomizePopupWindowParamsEventArgs e)
+        private DateTime? RecordCurrentStart()
+        {
+            // look for history record up to a millisecond before the current record
+            if (!(View.CurrentObject is Answer ans)) return null;
+            var sql = @$"declare @dttime datetime
+                select @dttime = getdate()
+                update answers set answertext = answertext from answers where id = {ans.Id}
+[               select @dttime as Dt ";
+            return HandyFunctions.RunDateQuery(sql);
+
+        }
+        private void Action_CustomizeStartEditPopupWindowParams(object sender, CustomizePopupWindowParamsEventArgs e)
+        {
+            var note = new MyNote { ObjectSpace = new NonPersistentObjectSpace(new TypesInfo()) };
+            e.View = Application.CreateDetailView(note);
+            var startTime = RecordCurrentStart(); 
+            
+            note.Text = $"Started at {startTime}";
+        }
+        private void Action_CustomizeMinsPopupWindowParams(object sender, CustomizePopupWindowParamsEventArgs e)
         {
             var note = new MyNote {ObjectSpace = new NonPersistentObjectSpace(new TypesInfo())};
             e.View = Application.CreateDetailView(note);
@@ -49,7 +79,7 @@ namespace Exambuddy2.Module.Blazor.Controllers
             var secs = GetSecsDuringLastEdit();
             if (secs == null)
             {
-                note.Text = "There is no prior edit"
+                note.Text = "There is no prior edit";
                 return;
             }
             double secsperMin = 60;

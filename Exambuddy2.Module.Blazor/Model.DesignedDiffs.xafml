@@ -2,6 +2,13 @@
 <Application>
   <NavigationItems>
     <Items>
+      <Item Id="Main">
+        <Items>
+          <Item Id="Source_ListView" Index="2" />
+          <Item Id="Question_ListView" Index="3" />
+          <Item Id="Answer_ListView" Index="4" />
+        </Items>
+      </Item>
     </Items>
   </NavigationItems>
   <SchemaModules>

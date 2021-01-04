@@ -8,6 +8,7 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl.EF;
 using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
+using DevExpress.Persistent.Validation;
 //using DevExpress.Xpo;
 namespace Exambuddy2.Module.BusinessObjects
 {
@@ -36,7 +37,7 @@ namespace Exambuddy2.Module.BusinessObjects
         [Browsable(false)]
         public int QuestionId { get; set; }
         [ForeignKey("QuestionId")]
-        [Required]
+        [RuleRequiredField(DefaultContexts.Save)]
         public virtual Question Question { get; set; }
 
 

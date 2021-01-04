@@ -7,6 +7,7 @@ using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.Validation;
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]
@@ -20,11 +21,11 @@ namespace Exambuddy2.Module.BusinessObjects
         }
 
         [Browsable(false)] public int TopicId { get; set; }
+        [RuleRequiredField(DefaultContexts.Save)]
         [ForeignKey("TopicId")] public virtual Topic Topic { get; set; }
+        [RuleRequiredField(DefaultContexts.Save)]
         [MaxLength(255)] public string Name { get; set; }
-        
         public SourceType Type { get; set; }
-      
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         public string Information { get; set; }

@@ -2,17 +2,19 @@
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
-//using DevExpress.Xpo;
+using DevExpress.Persistent.Validation;
+ 
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]
+    [DefaultClassOptions]
     public class CourseUnit : BasicBo
     {
         public CourseUnit()
         {
             Topics = new List<Topic>();
         }
-
+        [RuleRequiredField(DefaultContexts.Save)]
         public string Name { get; set; }
         public virtual IList<Topic> Topics { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]

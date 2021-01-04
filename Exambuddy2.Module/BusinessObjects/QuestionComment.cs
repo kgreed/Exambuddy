@@ -6,6 +6,7 @@ using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
+using DevExpress.Persistent.Validation;
 namespace Exambuddy2.Module.BusinessObjects
 {
    [Table("QuestionComments")]
@@ -21,6 +22,7 @@ namespace Exambuddy2.Module.BusinessObjects
        
         public int QuestionId { get; set; }
         [ForeignKey("QuestionId")]
+        [RuleRequiredField(DefaultContexts.Save)]
         public virtual Question Question { get; set; }
 
         [Browsable(false)]
@@ -30,15 +32,12 @@ namespace Exambuddy2.Module.BusinessObjects
         [ModelDefault("RowCount", "4")]
         public string  Text { get; set; }
 
-        //[Browsable(false)]
-        //[Required]
-        //public int UserId { get; set; }
-        //[ForeignKey("UserId")]
-        //public virtual PermissionPolicyUser User { get; set; }
+ 
         [Browsable(false)]
         public int? CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
+        [RuleRequiredField(DefaultContexts.Save)]
         public virtual QuestionCommentCategory Category { get; set; }
         public int Score { get; set; }
 
@@ -52,11 +51,7 @@ namespace Exambuddy2.Module.BusinessObjects
             }
         }
 
-        //public override void AddChild(BasicBo child)
-        //{
-        //    base.AddChild(child);
-        //    Questions.Add(child as Question);
-        //}
+      
 
     }
 }

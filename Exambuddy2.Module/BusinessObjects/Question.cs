@@ -6,6 +6,7 @@ using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.Validation;
 namespace Exambuddy2.Module.BusinessObjects
 {
     
@@ -30,14 +31,11 @@ namespace Exambuddy2.Module.BusinessObjects
                 Source = bo.ObjectSpace.FindObject<Source>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
             }
         }
-        private string _name { get; set; }
-        public string Name
-        {
-            get => _name;
-            set => _name = value;
-        }
+        [RuleRequiredField(DefaultContexts.Save)]
+        public string Name { get; set; }
         public string QuestionNo { get; set; }
         [Browsable(false)] public int SourceId { get; set; }
+        [RuleRequiredField(DefaultContexts.Save)]
         [ForeignKey("SourceId")] public virtual Source Source { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]

@@ -5,7 +5,7 @@ using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
- 
+using DevExpress.Persistent.Validation;
 namespace Exambuddy2.Module.BusinessObjects
 {
     [NavigationItem("Main")]
@@ -25,10 +25,11 @@ namespace Exambuddy2.Module.BusinessObjects
                 CourseUnit = bo.ObjectSpace.FindObject<CourseUnit>(CriteriaOperator.Parse("[Id]=? ", bo.Id));
             }
         }
-     
+        [RuleRequiredField(DefaultContexts.Save)]
         public string Name { get; set; }
         public int Week { get; set; }
         [Browsable(false)]
+        [RuleRequiredField(DefaultContexts.Save)]
         public int CourseUnitId { get; set; }
         [Browsable(true)]
         [ForeignKey("CourseUnitId")]  public virtual CourseUnit CourseUnit { get; set; }

@@ -41,4 +41,7 @@
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Controllers\MyNoteDeactivateSaveController.cs" />
+  </ItemGroup>
 </Project>

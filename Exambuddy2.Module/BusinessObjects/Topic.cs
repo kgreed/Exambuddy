@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using DevExpress.Data.Filtering;
-using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
@@ -32,11 +31,14 @@ namespace Exambuddy2.Module.BusinessObjects
         [RuleRequiredField(DefaultContexts.Save)]
         public int CourseUnitId { get; set; }
         [Browsable(true)]
-        [ForeignKey("CourseUnitId")]  public virtual CourseUnit CourseUnit { get; set; }
-         public virtual IList<Source> Sources { get; set; }
+        [RuleRequiredField(DefaultContexts.Save)]
+        [ForeignKey("CourseUnitId")]
+        public virtual CourseUnit CourseUnit { get; set; }
+        public virtual IList<Source> Sources { get; set; }
         [EditorAlias("MyHtmlPropertyEditor")]
         [ModelDefault("RowCount", "4")]
         public string TopicNotes { get; set; }
+
         public override void AddChild(BasicBo child)
         {
             base.AddChild(child);

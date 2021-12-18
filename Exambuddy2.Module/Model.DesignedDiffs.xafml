@@ -11,13 +11,13 @@
         </Items>
       </Item>
       <Item Id="Config" Index="1" />
-      <Item Id="Default" Caption="Users" IsNewNode="True">
+      <!--<Item Id="Default" Caption="Users" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="MyDetails" ViewId="PermissionPolicyUser_DetailView" ObjectKey="@CurrentUserID" Caption="My Details" IsNewNode="True" />
           <Item Id="PermissionPolicyRole_ListView" ViewId="PermissionPolicyRole_ListView" Caption="My Role" IsNewNode="True" />
           <Item Id="PermissionPolicyUser_ListView" ViewId="PermissionPolicyUser_ListView" Caption="My User" IsNewNode="True" />
         </Items>
-      </Item>
+      </Item>-->
       <Item Id="Reports" Visible="True" />
     </Items>
   </NavigationItems>

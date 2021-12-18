@@ -4,14 +4,16 @@ using Exambuddy2.Module.BusinessObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Exambuddy2.Module.Migrations
 {
     [DbContext(typeof(Exambuddy2EFCoreDbContext))]
-    partial class Exambuddy2EFCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210308044325_fields")]
+    partial class fields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -430,15 +432,17 @@ namespace Exambuddy2.Module.Migrations
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Subject")
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SourceId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Week")
                         .HasColumnType("int");
+
+                    b.Property<string>("subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("text")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -467,7 +471,7 @@ namespace Exambuddy2.Module.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("FileDataCards");
+                    b.ToTable("FileDataCard");
                 });
 
             modelBuilder.Entity("Exambuddy2.Module.BusinessObjects.CourseUnit", b =>

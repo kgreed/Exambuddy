@@ -7,9 +7,10 @@ using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
+using Exambuddy2.Module.Annotations;
+using Exambuddy2.Module.BusinessObjects;
 namespace Exambuddy2.Module.BusinessObjects
 {
-    
     [NavigationItem("Main")]
     [FileAttachment(nameof(DataFile))]
     [DefaultClassOptions]

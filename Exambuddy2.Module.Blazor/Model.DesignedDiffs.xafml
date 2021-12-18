@@ -15,6 +15,12 @@
     <SchemaModule Name="SystemModule" Version="20.2.4.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
+    <ListView Id="Question_ListView">
+      <Columns>
+        <ColumnInfo Id="Name" SortOrder="None" SortIndex="-1" />
+        <ColumnInfo Id="QuestionNo" SortOrder="Ascending" SortIndex="0" />
+      </Columns>
+    </ListView>
     <ListView Id="QuestionFileData_ListView" DataAccessMode="Server" />
     <DetailView Id="Source_DetailView">
       <Layout>
@@ -34,5 +40,11 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="Topic_ListView">
+      <Columns>
+        <ColumnInfo Id="Name" SortOrder="None" />
+        <ColumnInfo Id="Week" SortIndex="0" SortOrder="Ascending" />
+      </Columns>
+    </ListView>
   </Views>
 </Application>

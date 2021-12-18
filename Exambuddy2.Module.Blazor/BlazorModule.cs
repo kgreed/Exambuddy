@@ -34,7 +34,7 @@ namespace Exambuddy2.Module.Blazor {
         }
         public override void Setup(XafApplication application) {
             base.Setup(application);
-            //application.CreateCustomModelDifferenceStore += Application_CreateCustomModelDifferenceStore;
+           
             application.CreateCustomUserModelDifferenceStore += Application_CreateCustomUserModelDifferenceStore;
             // Manage various aspects of the application UI and behavior at the module level.
         }

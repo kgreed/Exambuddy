@@ -30,9 +30,14 @@ namespace Exambuddy2.Module.BusinessObjects
         public DbSet<QuestionCommentCategory> QuestionCommentCategories { get; set; }
         public DbSet<AnswerCommentCategpry> AnswerCommentCategories { get; set; }
 
+        public DbSet<CardFileData> CardFileData { get; set; }
+        public DbSet<Card> Cards{ get; set; }
+
         protected override void OnModelCreating(ModelBuilder mb)
         {
             base.OnModelCreating(mb);
+
+
             mb.Entity<Topic>().HasOne(b => b.CourseUnit).WithMany(i => i.Topics);
             mb.Entity<Source>().HasOne(b => b.Topic).WithMany(i => i.Sources);
             mb.Entity<Question>().HasOne(b => b.Source).WithMany(i => i.Questions);
